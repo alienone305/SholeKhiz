@@ -1,0 +1,10 @@
+Recaptcha for user signup
+maybe sms authentication
+check all reverse(redirect) routes
+change kavenegar sender number
+translate form errors
+contact us list view superuser
+add cataloge and detail for products model and checks its updateproduct form
+check products picture height for producs list
+1ike PhotoListView or if statement for urls
+pagination for certain pages

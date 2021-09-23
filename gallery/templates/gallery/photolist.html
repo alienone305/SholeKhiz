@@ -1,0 +1,53 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+لیست عکس ها | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<h3 style="font-size:40px; text-shadow: 0 0 20px blue, 0 0 30px black" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">لیست عکس ها</h3>
+<br>
+<div style="padding:4%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+{% for photo in photos %}
+
+      <div class="uk-width-1-1 uk-width-1-2@s uk-block fHarmattan">
+
+    <div class="uk-card uk-card-default uk-grid-collapse uk-margin" uk-scrollspy=" cls: uk-animation-fade; delay: 100" uk-grid>
+      <div class="uk-card-media-top uk-cover-container">
+          <img src="{{photo.picture.url}}" alt="" uk-cover>
+          <canvas width="600" height="400"></canvas>
+      </div>
+      <div>
+        <br>
+              <p class="uk-text-center">{{photo.description}}</p>
+              {% if user.is_superuser %}
+              <br><br><br>
+              <div style="margin-right:0px;" class="uk-position-bottom" uk-grid>
+                <a style="border-top:solid 4px #ff0a0a; font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan uk-width-1-2" uk-toggle="target: #modal-delete{{photo.pk}}">حذف</a>
+                <a style="border-top:solid 4px #ff0a0a; font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan uk-width-1-2" href="{% url 'gallery:photoupdate' photo.pk %}">ویرایش</a>
+              </div>
+              <div id="modal-delete{{photo.pk}}" uk-modal>
+              <div class="uk-modal-dialog uk-modal-body">
+              <h2 class="uk-modal-title fHarmattan ">اطمینان در حذف؟</h2>
+              <p class="fHarmattan">با حذف این مورد، تمامی مشخصات این عکس از دیتابیس ها حذف خواهد شد.</p>
+              <p class="uk-text-right">
+              <button class="uk-button uk-button-large uk-modal-close fHarmattan" type="button">لغو</button>
+              <a style="font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan " href="{% url 'gallery:photodelete' photo.pk %}" >حدف</a>
+              </p>
+              </div>
+              </div>
+{% endif %}
+      </div>
+  </div>
+
+
+
+</div>
+
+{% endfor %}
+</div>
+    {% endblock %}

@@ -1,0 +1,46 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+گالری | شعله خیز
+</title>
+{% endblock %}
+{% block body_block %}
+<br>
+<h1 style="text-shadow: 0 0 20px blue, 0 0 30px black" class="uk-text-center whiteC-text fHarmattan">گالری</h1>
+<br><br>
+<div style="margin:20px;" uk-slider>
+
+    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: scale" >
+
+        <ul class="uk-slider-items uk-child-width-1-2@s uk-grid " uk-lightbox="animation: scale">
+          {% for photo in photos %}
+            <li >
+                <div class="uk-card uk-card-default ">
+
+                    <div class="uk-card-media-top">
+                      <a class="uk-inline" href="{{photo.picture.url}}" data-caption="{{photo.description}}">
+    <img src="{{photo.picture.url}}" alt="">
+</a>
+
+                    </div>
+                    <div class="uk-card-body">
+                        <p class="fHarmattan">{{photo.description}}</p>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+
+        </ul>
+
+        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+    </div>
+
+    <ul style="color:white;" class="uk-slider-nav uk-dotnav uk-flex-center uk-margin whitec-text"></ul>
+
+</div>
+
+{% endblock %}

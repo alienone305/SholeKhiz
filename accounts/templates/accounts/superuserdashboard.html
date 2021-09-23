@@ -1,0 +1,35 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+داشبورد | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<h1 style="text-shadow: 0 0 20px blue, 0 0 30px black" class="uk-text-center whiteC-text fHarmattan">داشبورد</h1>
+<br><br>
+<div class="uk-grid-match uk-grid-small uk-text-center redC" uk-grid>
+  <div class="uk-width-1-6 uk-width-1-4@m">
+
+  </div>
+      <div class="uk-width-2-3 uk-width-1-2@m ">
+<a href="{% url 'products:create' %}" class="uk-button whiteC uk-width-1-1 uk-margin-small-bottom redC-text fHarmattan uk-text-large">ایجاد محصول</a>
+<a href="{% url 'products:listsuperuser' %}" class="uk-button whiteC uk-width-1-1 uk-margin-small-bottom redC-text fHarmattan uk-text-large">محصولات</a>
+<a href="{% url 'order:checkedlist' %}" class="uk-button whiteC uk-width-1-1 uk-margin-small-bottom redC-text fHarmattan uk-text-large">سفارشات چک شده</a>
+<a href="{% url 'order:uncheckedlist' %}" class="uk-button whiteC uk-width-1-1 uk-margin-small-bottom redC-text fHarmattan uk-text-large">سفارشان چک نشده</a>
+<a href="{% url 'gallery:createphoto' %}" class="uk-button whiteC uk-width-1-1 uk-margin-small-bottom redC-text fHarmattan uk-text-large">افزودن عکس به گالری</a>
+<a href="{% url 'gallery:photolist' %}" class="uk-button whiteC uk-width-1-1 uk-margin-small-bottom redC-text fHarmattan uk-text-large">لیست عکس های گالری</a>
+<a href="{% url 'delegations:add' %}" class="uk-button whiteC uk-width-1-1 uk-margin-small-bottom redC-text fHarmattan uk-text-large">افزودن نمایندگی</a>
+<a href="{% url 'delegations:listsuperuser' %}" class="uk-button whiteC uk-width-1-1 uk-margin-small-bottom redC-text fHarmattan uk-text-large">لیست نمایندگی ها</a>
+<a href="{% url 'company:contact-us-list' %}" class="uk-button whiteC uk-width-1-1 uk-margin-small-bottom redC-text fHarmattan uk-text-large">لیست تماس با ما</a>
+
+</div>
+<div class="uk-width-1-6 uk-width-1-4@m">
+
+</div>
+</div>
+<br><br><br><br>
+    {% endblock %}

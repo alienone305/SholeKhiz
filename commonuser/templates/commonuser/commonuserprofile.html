@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align fHarmattan ">{{commonuser_detail.user.username}}</div>
+      <div class="col s6 m6 l6 left-align">نام کاربری</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align fHarmattan">{{commonuser_detail.user.first_name}}/{{commonuser_detail.user.last_name}}</div>
+      <div class="col s6 m6 l6 left-align">نام و نام خانوادگی</div>
+    </div>
+    <div class="row">
+      <div class="col s6 m6 l6 right-align fHarmattan">{{commonuser_detail.user.email}}</div>
+      <div class="col s6 m6 l6 left-align">ایمیل</div>
+    </div>
+    </h6>
+<div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'commonuser:update' commonuser_detail.user.slug %}" class="waves-effect waves-light btn modal-trigger modal-close gold white-text"><h6>               <span>ویرایش مشخصات</span>               </h6></a><p></p></div>
+  </body>
+</html>

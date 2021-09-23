@@ -1,0 +1,71 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+سفارش محصول | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+
+
+
+
+
+<div style="padding:80px;" class="uk-grid-match uk-grid-small uk-text-center redC" uk-grid>
+
+
+      <div class="uk-width-1-1 uk-block milkywhiteC">
+<div class="uk-card uk-card uk-card-body">
+  <div class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
+    <div class="uk-width-1-1 uk-width-1-5@m uk-block">
+      <h3 class="uk-card-title fHarmattan uk-text-bold">
+{% if product.is_package %}
+پکیج
+{% elif product.is_radiator %}
+رادیاتور پنلی
+{% elif product.is_towerdryer %}
+حوله خشک کن
+{% elif product.is_waterheater %}
+آبگرمکن
+{% endif %}<br></h3>
+    <h3 class="fHarmattan">   {{product.name}}</h3>
+      <p class="uk-text-right uk-text-justify fHarmattan">{{product.description}}</p>
+    </div>
+  <div class="uk-width-1-1 uk-width-2-5@m uk-block">
+    <img src="{{product.picture.url}}" alt="">
+</div>
+
+<div class="uk-width-1-1 uk-width-2-5@m  uk-block">
+
+<h3 style="font-size:30px;" class="redC-text uk-card-title uk-align-center fHarmattan">سفارش محصول</h3>
+
+<form enctype="multipart/form-data" method="POST">
+  {% csrf_token %}
+  <div class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
+
+  <div class="uk-width-1-1">
+{{ordering_form.number}}
+  </div>
+
+  <div class="uk-width-1-1">
+  {{ordering_form.description}}
+  </div>
+
+  <div class="uk-width-1-1">
+  {{ordering_form.errors}}
+  </div>
+
+  </div>
+  <br>
+  <button  class="uk-button fHarmattan redC whiteC-text " type="submit">تایید
+</button>
+</form>
+</div>
+</div>
+
+</div>
+</div>
+    {% endblock %}

@@ -1,0 +1,46 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+لیست نماینگی ها | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">لیست نمایندگی ها</h3>
+<br>
+<div style="padding:5%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+{% for delegation in delegations %}
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+      <div style="margin-top:-25px"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+          <div class="uk-width-1-2 uk-text-left redC-text" >استان</div><div class="uk-width-1-2 uk-text-right darkgreyC-text">{{delegation.province}}</div>
+
+          <div class="uk-width-1-2 uk-text-left redC-text" >شماره تماس</div><div class="uk-width-1-2 uk-text-right darkgreyC-text">{{delegation.phone_number}}</div>
+
+          <div class="uk-width-1-1 uk-text-center redC-text" >آدرس</div><div class="uk-width-1-1 uk-text-justify darkgreyC-text">{{delegation.address}}</div>
+<br>
+{% if user.is_superuser %}
+<div class="uk-width-1-2 uk-text-left">
+<a class="uk-button uk-button-large darkgreyC whiteC-text fHarmattan uk-width-1-1" href="{% url 'delegations:update' delegation.pk %}">ویرایش</a>
+</div>
+<div class="uk-width-1-2 uk-text-right">
+<a class="uk-button uk-button-large darkgreyC whiteC-text fHarmattan uk-width-1-1" href="{% url 'delegations:delete' delegation.pk %}">حذف</a>
+</div>
+
+{% endif %}
+      </div>
+
+
+
+</div>
+
+</div>
+
+{% endfor %}
+</div>
+    {% endblock %}

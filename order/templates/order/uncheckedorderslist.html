@@ -1,0 +1,48 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+لیست سفارشات | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">لیست سفارشات چک نشده</h3>
+<br>
+<div style="padding:2%" class="uk-grid-match uk-text-center" uk-grid>
+{% for order in order_list %}
+<div class="uk-width-1-6 uk-hidden@s ">
+
+</div>
+      <div class="uk-width-2-3 uk-width-1-2@s uk-block">
+<div class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+      <div class=" fHarmattan uk-text-large" uk-grid>
+          <div class="uk-width-1-2 uk-text-left blueC-text" >نام سفارش دهنده</div><div class="uk-width-1-2 uk-text-right redC-text">{{ order.user.name }}</div>
+
+          <div class="uk-width-1-2 uk-text-left blueC-text" >محصول سفارش شده</div><div class="uk-width-1-2 uk-text-right redC-text">{{ order.product.name }}</div>
+
+          <div class="uk-width-1-2 uk-text-left blueC-text" >تعداد محصول</div><div class="uk-width-1-2 uk-text-right redC-text">{{order.number}}</div>
+
+<br>
+{% if user.is_superuser %}
+<div class="uk-width-1 uk-text-right">
+<a class="uk-button uk-button-large redC whiteC-text fHarmattan uk-text-large uk-width-1-1" href="{% url 'order:detail' order.pk %}" >جزئیات</a>
+</div>
+{% endif %}
+      </div>
+
+
+
+</div>
+
+</div>
+
+<div class="uk-width-1-6 uk-hidden@s">
+
+</div>
+{% endfor %}
+</div>
+    {% endblock %}

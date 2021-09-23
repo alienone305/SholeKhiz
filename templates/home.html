@@ -1,0 +1,135 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+خانه | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+
+<div id='sidenav' uk-sticky class="fHarmattan uk-text-left uk-sticky uk-sticky-fixed  ">
+  <!-- uk-scrollspy-nav="closest: li; scroll: true; offset: 100"-->
+  <ul  class="uk-nav uk-nav-default tm-nav uk-nav-parent-icon">
+    <li class=""><a href="#sholekhiz">شرکت شعله خیز</a></li>
+    <li class=""><a href="#products">محصولات و سفارش</a></li>
+    <li class=""><a href="#aboutus">معرفی شرکت</a></li>
+    <li class=""><a href="#slider">اسلایدر</a></li>
+    <li class=""><a href="#delegations">نمایندگی ها</a></li>
+  </ul>
+</div>
+
+<!-- Intro Section  ***********************************************************************************  -->
+
+<div class="uk-background-fixed uk-height-large" style="background-image: url(/media/homepage/background.jpg);">
+<h1 id="sholekhiz" class="uk-h1 tm-heading-fragment"><a href="#sholekhiz">شرکت شعله خیز</a></h1>
+</div>
+
+
+<br><br>
+ <!-- PRODUCTS Section  ***********************************************************************************  -->
+ <section class="milkywhiteC">
+
+
+ <br>
+ <h1 id="products" class="uk-h1 tm-heading-fragment fHarmattan redC-text uk-text-center"><a href="#products">محصولات و سفارش</a></h1>
+ <br>
+ <div style="padding:10%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+  <a class="uk-overflow-hidden uk-width-1-1 uk-width-1-2@s uk-block fHarmattan" href="{% url 'products:radiatorlist' %}">
+    <div class=" uk-animation-reverse uk-animation-kenburns uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" data-src="/media/homepage/background2.jpg" uk-img>
+  <h1 class="fHarmattan">رادیاتور پانلی</h1>
+</div>
+    </a>
+    <a class="uk-overflow-hidden uk-width-1-1 uk-width-1-2@s uk-block fHarmattan" href="{% url 'products:packagelist' %}">
+      <div class=" uk-animation-reverse uk-animation-kenburns uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" data-src="/media/homepage/background2.jpg" uk-img>
+    <h1 class="fHarmattan">پکیج دیواری</h1>
+  </div>
+      </a>
+      <a class="uk-overflow-hidden uk-width-1-1 uk-width-1-2@s uk-block fHarmattan" href="{% url 'products:towerdryerlist' %}">
+        <div class=" uk-animation-reverse uk-animation-kenburns uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" data-src="/media/homepage/background2.jpg" uk-img>
+      <h1 class="fHarmattan">حوله خشک کن</h1>
+    </div>
+        </a>
+        <a class="uk-overflow-hidden uk-width-1-1 uk-width-1-2@s uk-block fHarmattan" href="{% url 'products:waterheaterlist' %}">
+          <div class=" uk-animation-reverse uk-animation-kenburns uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" data-src="/media/homepage/background2.jpg" uk-img>
+        <h1 class="fHarmattan">آبگرمکن</h1>
+      </div>
+          </a>
+  </div>
+ </section>
+ <!-- AboutUs Section  ***********************************************************************************  -->
+
+
+ <div class="uk-background-cover uk-height-medium uk-panel uk-flex uk-flex-center uk-flex-middle" style="background-image: url(media/homepage/background.jpg);">
+ <br>
+<div class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
+  <div class="uk-width-2-5" >
+    <h1 id="aboutus" class="uk-h1 tm-heading-fragment uk-text-right fHarmattan"><a href="#aboutus">معرفی شرکت</a></h1>
+      گروه صنعتی شعله خیز آذر با هدف انتقال جدیدترین تکنولوژی روز دنیا و در راستای تعهد به پیشرفت صنعت ملی در حوزه محصولات گرمایشی، حرکت به سوی تولید محصول رادیاتور پنلی با نلم شعله خیز آذر را در منطقه شمال غرب کشور آغاز کرد .
+
+این شرکت در فرصت کوتاه یکساله موفق شد به همت جمعی از جوانان کوشا و متخصص بومی، محصول رادیاتور پنلی را با کیفیت بالا و متفاوت وارد چرخه تولیدات صنعتی داخلی نماید و این آغاز مسیری بود که این شرکت در آن گام نهاد و رفته رفته توانست به مقصد ارزشمند و هدف والای خود کمی نزدیکتر شود.
+
+به امید آنکه رادیاتور پنلی شعله خیز آذر با همان گرمای همانند خورشید فروزانمان ،وارد کانون گرم خانه و خانواده های شما گردد و این حسن انتخاب شما بزرگترین افتخار و دلگرمی برای گروه صنعتی شعله خیز آذر می باشد.</p>
+
+  </div>
+      <div class="uk-width-3-5  uk-block">
+  </div>
+  </div>
+</div>
+
+
+
+ <!-- Slider Section  ***********************************************************************************  -->
+ <h1 id="slider" class="uk-h1 tm-heading-fragment fHarmattan redC-text uk-text-center"><a href="#slider">اسلایدر</a></h1>
+ <section class="milkywhiteC">
+
+
+<br><br>
+ <div class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
+   <div class="uk-width-1-6"></div>
+   <div class="uk-width-2-3">
+<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="center: true">
+
+    <ul class="uk-slider-items uk-grid">
+      {% for photo in photos %}
+        <li class="uk-width-3-4">
+            <div class="uk-panel">
+                <img src="{{photo.picture.url}}" alt="">
+            </div>
+        </li>
+{% endfor %}
+    </ul>
+
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+</div>
+
+</div>
+<div class="uk-width-1-6"></div>
+</div>
+<br><br><br>
+ </section>
+<!-- Delegations Section  ***********************************************************************************  -->
+
+
+<div class="uk-grid-match uk-grid-small uk-text-center redC" style="padding:4%" uk-grid>
+  <div class="uk-width-1-3">
+    <h1 id="delegations" class="uk-h1 tm-heading-fragment fHarmattan uk-text-center"><a href="#delegations">نمایندگی ها</a></h1>
+<br><br><br>
+<a style=" font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan" href="{% url 'delegations:publiclist' %}">لیست نمایندگی ها</a>
+<p></p>
+  </div>
+      <div class="uk-width-2-3  uk-block ">
+        <img src="/media/homepage/iran-map.png" alt="">
+  </div>
+  </div>
+
+
+    {% endblock %}
+    {% block script_block %}
+    <script type="text/javascript">
+      var spyNav = UIkit.scrollspyNav('#sidenav', {closest: 'li', scroll: true, offset:170, cls:'uk-active'});
+    </script>
+    {% endblock %}

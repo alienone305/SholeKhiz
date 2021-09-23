@@ -1,0 +1,38 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+ویرایش نمایندگی | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">لیست تماس با ما</h3>
+<div style="padding:5%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+{% for contactus in contactus_list %}
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+      <div style="margin-top:-25px"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+          <div class="uk-width-1-2 uk-text-left redC-text" >نام</div><div class="uk-width-1-2 uk-text-right darkgreyC-text">{{contactus.name}}</div>
+
+          <div class="uk-width-1-2 uk-text-left redC-text" >شماره تماس</div><div class="uk-width-1-2 uk-text-right darkgreyC-text">{{contactus.phone_number}}</div>
+          <div class="uk-width-1-2 uk-text-left redC-text" >آدرس ایمیل</div><div class="uk-width-1-2 uk-text-right darkgreyC-text">{{contactus.email}}</div>
+
+          <div class="uk-width-1-1 uk-text-center redC-text" >متن درخواست یا پیشنهاد</div><div class="uk-width-1-1 uk-text-justify darkgreyC-text">{{contactus.request}}</div>
+<br>
+
+      </div>
+
+
+
+</div>
+
+</div>
+
+{% endfor %}
+</div>
+    {% endblock %}

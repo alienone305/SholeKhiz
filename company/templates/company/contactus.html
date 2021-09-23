@@ -1,0 +1,81 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+تماس با ما | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<div style="padding:7%">
+
+
+<div style="padding: 1%;border-radius: 8px;" uk-grid>
+<div class=" uk-width-1-1 uk-block fHarmattan ">
+<div class="uk-card uk-card-body milkywhiteC ">
+<div class="uk-card uk-card uk-card-body uk-text-center">
+    <h1 style="font-size:30px;" class="redC-text uk-card-title uk-align-center fHarmattan">تماس با ما</h1>
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      <div  class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
+
+      <div class="uk-width-1">
+{{contactus_form.name}}
+      </div>
+
+      <div class="uk-width-1-2@m">
+      {{contactus_form.phone_number}}
+      </div>
+
+      <div class="uk-width-1-2@m">
+      {{contactus_form.email}}
+      </div>
+
+      <div class="uk-width-1">
+      {{contactus_form.request}}
+      </div>
+
+      </div>
+      <br>
+      <button style="margin-top:20px;" class="uk-button uk-button-primary fHarmattan redC " type="submit">تایید
+    </button>
+    </form>
+</div>
+<div class="uk-width-1-6 uk-width-1-4@m">
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<br><br>
+<div style="margin-bottom:-25px;padding-left:2%;padding-right:2%;" class="uk-grid-match uk-grid-small uk-text-center milkywhiteC fHarmattan uk-text-large " uk-grid>
+  <div class="uk-width-1 uk-width-1-3@m">
+<ul class="uk-list fHarmattan uk-text-center"><br><span class="uk-margin-small-right redC-text" uk-icon="icon:receiver;ratio:2"></span><br><br>
+  <li>  شماره های تماس</li>
+<li>041-42544436</li>
+<li>041-42544437</li>
+<li>041-42544504</li>
+</ul>
+  </div>
+
+  <div class="uk-width-1 uk-width-1-3@m">
+    <ul class="uk-list fHarmattan uk-text-center"><br><span class="uk-margin-small-right redC-text" uk-icon="icon:location;ratio:2"></span><br><br>
+      <li>آدرس</li>
+    <li>آذربایجان شرقی- جاده تبریز مرند ،روبروی سیمان صوفیان، شهرک آیت الله هاشمی رفسنجانی (شهرک صنایع ساختمانی) خیابان هفتم</li>
+
+    </ul>
+  </div>
+
+  <div class="uk-width-1 uk-width-1-3@m">
+    <ul class="uk-list fHarmattan uk-text-center"><br><span class="uk-margin-small-right redC-text" uk-icon="icon:print;ratio:2"></span><br><br>
+      <li>  فکس</li>
+    <li>041-42544340</li>
+
+    </ul>
+  </div>
+  </div>
+    {% endblock %}

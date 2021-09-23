@@ -1,0 +1,45 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+افزودن نمایندگی | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br><br>
+<div style="padding:6%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+  <div class="uk-width-1-1  uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+    <h3 style="font-size:30px;" class=" uk-card-title uk-align-center fHarmattan">افزودن نمایندگی</h3><br>
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      <div class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
+
+      <div class="uk-width-1-2@m">
+{{delegation_form.province}}
+      </div>
+
+      <div class="uk-width-1-2@m">
+      {{delegation_form.phone_number}}
+      </div>
+
+      <div class="uk-width-1">
+      {{delegation_form.address}}
+      </div>
+
+      <div class="uk-width-1-2@m">
+      {{delegation_form.errors}}
+      </div>
+
+      </div>
+      <br>
+      <button style="margin-top:20px;" class="uk-button uk-button-primary fHarmattan redC " type="submit">تایید
+    </button>
+    </form>
+</div>
+
+</div>
+</div><br>
+    {% endblock %}

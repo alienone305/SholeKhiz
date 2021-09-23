@@ -1,0 +1,95 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+محصولات | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<h3 style="font-size:40px; text-shadow: 0 0 20px blue, 0 0 30px black" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">رادیاتور پانلی</h3>
+<br>
+<div style="padding:4%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+{% for product in products %}
+
+      <div class="uk-width-1-1 uk-width-1-2@s uk-block fHarmattan">
+{% if not forloop.counter|divisibleby:2 %}
+  <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-scrollspy=" cls: uk-animation-fade; delay: 100" uk-grid>
+      <div class="uk-card-media-left uk-cover-container">
+          <img src="{{product.picture.url}}" alt="" uk-cover>
+          <canvas width="600" height="400"></canvas>
+      </div>
+      <div>
+        <div class="uk-card-body fHarmattan">
+            <h3 class="uk-card-title fHarmattan uk-text-bold">
+{% if product.is_package %}
+پکیج
+{% elif product.is_radiator %}
+رادیاتور پنلی
+{% elif product.is_towerdryer %}
+حوله خشک کن
+{% elif product.is_waterheater %}
+آبگرمکن
+{% endif %}<br></h3>
+          <h3 class="fHarmattan">   {{product.name}}</h3>
+            <p class="uk-text-right uk-text-justify">{{product.description}}</p>
+
+              {% if not user.is_superuser %}
+              <br><br><br><br><br><br><br><br><br><br>
+              <div style="margin-right:0px;" class="uk-position-bottom" uk-grid>
+                <a style="border-top:solid 4px #ff0a0a; font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan uk-width-1-3" href="#">کاتالوگ</a>
+                <a style="border-top:solid 4px #ff0a0a; font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan uk-width-1-3" href="{% url 'ordering:order' product.pk %}">سفارش</a>
+                <a style="border-top:solid 4px #ff0a0a; font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan uk-width-1-3" href="#">مشخصات</a>
+              </div>
+              {% else %}
+              <br><br><br><br><br><br><br><br><br><br>
+
+{% endif %}
+          </div>
+      </div>
+  </div>
+{% else %}
+  <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-scrollspy=" cls: uk-animation-fade; delay: 100" uk-grid>
+      <div class="uk-flex-last@s uk-card-media-right uk-cover-container">
+          <img src="{{product.picture.url}}" alt="" uk-cover>
+          <canvas width="600" height="400"></canvas>
+      </div>
+      <div>
+        <div class="uk-card-body fHarmattan">
+            <h3 class="uk-card-title fHarmattan uk-text-bold">
+{% if product.is_package %}
+پکیج
+{% elif product.is_radiator %}
+رادیاتور پنلی
+{% elif product.is_towerdryer %}
+حوله خشک کن
+{% elif product.is_waterheater %}
+آبگرمکن
+{% endif %}<br></h3>
+          <h3 class="fHarmattan">   {{product.name}}</h3>
+            <p class="uk-text-right uk-text-justify">{{product.description}}</p>
+
+              {% if not user.is_superuser %}
+              <br><br><br><br><br><br><br><br><br><br>
+              <div style="margin-right:0px;" class="uk-position-bottom" uk-grid>
+                <a style="border-top:solid 4px #ff0a0a; font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan uk-width-1-3" href="#">کاتالوگ</a>
+                <a style="border-top:solid 4px #ff0a0a; font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan uk-width-1-3" href="{% url 'ordering:order' product.pk %}">سفارش</a>
+                <a style="border-top:solid 4px #ff0a0a; font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan uk-width-1-3" href="#">مشخصات</a>
+              </div>
+              {% else %}
+              <br><br><br><br><br><br><br><br><br><br>
+
+              {% endif %}
+          </div>
+      </div>
+  </div>
+{% endif %}
+
+
+</div>
+
+{% endfor %}
+</div>
+    {% endblock %}
