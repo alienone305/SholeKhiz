@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'gallery',
     'delegations',
     'company',
+    'cooperation',
 ]
 
 AUTH_USER_MODEL = 'accounts.UserModel'

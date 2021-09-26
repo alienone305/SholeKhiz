@@ -1,0 +1,70 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+درخواست های همکاری | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">درخواست های همکاری</h3>
+<div style="padding:5%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+{% if application_list %}
+{% for application in application_list %}
+
+      <div class="uk-width-1-1 uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+      <div style="margin-top:-25px; font-size:20px;"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+          <div class="uk-width-1-6 uk-text-left redC-text" >عنوان فرصت شغلی</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.job.job_title}}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >نام</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.name }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >نام خانوادگی</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.last_name }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >ایمیل</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.email }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >شماره ملی</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.id_number }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >سن</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.age }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >شماره تماس ثابت</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.phone_number }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >شماره همراه</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.cellphone_number }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >جنسیت</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{% if application.is_man %}آقا{% else %}خانم{% endif %}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >وضعیت تاهل</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{% if application.is_single %}مجرد{% else %}متاهل{% endif %}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >آدرس</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.address }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >مدرک تحصیلی</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.college_evidence }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >رشته تحصیلی</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.field_of_study }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >نمره تحصیلی</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.college_score }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >نام محل تحصیل</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.name_of_college }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >تسلط بر انگلیسی</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.english_mastery }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >تسلط بر کامپیوتر</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.computer_mastery }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >سوابق کاری</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.job_attendance }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >توضیحات دیگر</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{application.description }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >فایل رزومه</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{% if application.resome %}<a href="{{application.resome.url}}"></a>{% endif %}</div>
+<br>
+      </div>
+</div>
+
+</div>
+
+{% endfor %}
+{% else %}
+<div class="uk-width-1-1 uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+<div style="margin-top:-25px"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+    <div class="uk-width-1- uk-text-center redC-text" >فعلا هیچ درخواست همکاری وجود ندارد.
+<br>
+با تشکر از همکاری شما
+<br>
+شعله خیز.
+    </div>
+
+
+</div>
+
+
+
+</div>
+
+</div>
+{% endif %}
+</div>
+    {% endblock %}

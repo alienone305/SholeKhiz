@@ -3,7 +3,7 @@
 {% block head_block %}
 <meta name=”robots” content=”noindex,follow”>
 <title>
-ویرایش نمایندگی | شعله خیز
+لیست تماس با ما | شعله خیز
 </title>
 {% endblock %}
 
@@ -24,7 +24,7 @@
 
           <div class="uk-width-1-1 uk-text-center redC-text" >متن درخواست یا پیشنهاد</div><div class="uk-width-1-1 uk-text-justify darkgreyC-text">{{contactus.request}}</div>
 <br>
-
+<a href="{% url 'company:contact-us-delete' contactus.pk  %}" class="uk-button redC uk-width-1-1 uk-margin-small-bottom whiteC-text fHarmattan uk-text-large">حذف</a>
       </div>
 
 

@@ -1,0 +1,60 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+فرصت های شغلی | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">فرصت های شغلی</h3>
+<div style="padding:5%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+{% if job_opportunity_list %}
+{% for job_opportunity in job_opportunity_list %}
+
+      <div class="uk-width-1-1 uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+      <div style="margin-top:-25px"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+          <div class="uk-width-1-2 uk-text-left redC-text" >عنوان فرصت شغلی</div><div class="uk-width-1-2 uk-text-right darkgreyC-text">{{job_opportunity.job_title}}</div>
+
+          <div class="uk-width-1-4 uk-text-left redC-text" >مهارت های مورد نیاز</div><div class="uk-width-3-4 uk-text-right darkgreyC-text">{{job_opportunity.required_skills|linebreaks }}</div>
+          <div class="uk-width-1-4 uk-text-left redC-text" >توضیحات فرصت شغلی</div><div class="uk-width-3-4 uk-text-right darkgreyC-text">{{job_opportunity.descriprion|linebreaks }}</div>
+
+<a href="{% url 'cooperation:createapplicatoin' job_opportunity.pk %}" class="uk-button redC uk-width-1-1 uk-margin-small-bottom whiteC-text fHarmattan uk-text-large">درخواست همکاری</a>
+<br>
+
+      </div>
+
+
+
+</div>
+
+</div>
+
+{% endfor %}
+{% else %}
+<div class="uk-width-1-1 uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+<div style="margin-top:-25px"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+    <div class="uk-width-1- uk-text-center redC-text" >فعلا هیچ فرصت شغلی برای شرکت شعله خیز وجود ندارد
+<br>
+با تشکر از همکاری شما
+<br>
+شعله خیز.
+    </div>
+
+
+</div>
+
+
+
+</div>
+
+</div>
+{% endif %}
+</div>
+    {% endblock %}

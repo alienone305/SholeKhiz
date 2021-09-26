@@ -1,0 +1,50 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+ایجاد فرصت شغلی | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<div style="padding:7%">
+
+
+<div style="padding: 1%;border-radius: 8px;" uk-grid>
+<div class=" uk-width-1-1 uk-block fHarmattan ">
+<div class="uk-card uk-card-body milkywhiteC ">
+<div class="uk-card uk-card uk-card-body uk-text-center">
+    <h1 style="font-size:30px;" class="redC-text uk-card-title uk-align-center fHarmattan">ایجاد فرصت شغلی</h1>
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      <div  class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
+
+      <div class="uk-width-1">
+{{job_opportunity_form.job_title}}
+      </div>
+
+      <div class="uk-width-1-1">
+      {{job_opportunity_form.required_skills}}
+      </div>
+
+      <div class="uk-width-1-1">
+      {{job_opportunity_form.descriprion}}
+      </div>
+
+      </div>
+      <br>
+      <button style="margin-top:20px;" class="uk-button uk-button-primary fHarmattan redC " type="submit">تایید
+    </button>
+    </form>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+<br><br>
+
+    {% endblock %}

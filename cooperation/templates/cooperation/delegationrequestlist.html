@@ -1,0 +1,73 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+درخواست های نمایندگی | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">درخواست های نمایندگی</h3>
+<div style="padding:5%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+{% if delegation_request_list %}
+{% for delegation_request in delegation_request_list %}
+
+      <div class="uk-width-1-1 uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+      <div style="margin-top:-25px; font-size:20px;"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >نام</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.name }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >نام خانوادگی</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.last_name }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >ایمیل</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.email }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >سن</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.age }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >استان</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.province }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >شهر</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.city }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >شماره تماس ثابت</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.phone_number }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >شماره همراه</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.cellphone_number }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >دارای انبار</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{% if delegation_request.has_reservoir %}بله{% else %}خیر{% endif %}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >درخواست نمایندگی برای:</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{% if delegation_request.for_towerdryer %}حوله خشک کن{% endif %}
+{% if delegation_request.for_package %}پکیج{% endif %}
+{% if delegation_request.for_radiator %}رادیاتور{% endif %}
+{% if delegation_request.for_waterheater %}آبگرمکن{% endif %}
+          </div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >شماره فکس</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.fax_number }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >متراژ فروشگاه</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.area }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >تخمین از فروش حوله خشک کن</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.sell_prediction_towerdryer }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >تخمین از فروش پکیج</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.sell_prediction_package }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >تخمین از فروش رادیاتور</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.sell_prediction_radiator }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >تخمین از فروش آبگرمکن</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.sell_prediction_waterheater }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >سوابق کاری</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.attendance }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >نوع مالکیت ملک</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.ownership_type }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >توضیحات</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.descriprion }}</div>
+<br>
+      </div>
+</div>
+
+</div>
+
+{% endfor %}
+{% else %}
+<div class="uk-width-1-1 uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+<div style="margin-top:-25px"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+    <div class="uk-width-1- uk-text-center redC-text" >فعلا هیچ درخواست نمایندگی وجود ندارد.
+<br>
+با تشکر از همکاری شما
+<br>
+شعله خیز.
+    </div>
+
+
+</div>
+
+
+
+</div>
+
+</div>
+{% endif %}
+</div>
+    {% endblock %}

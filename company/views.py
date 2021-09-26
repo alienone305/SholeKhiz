@@ -26,7 +26,7 @@ def ContactUsView(request):
              contactus.save()
              return HttpResponseRedirect(reverse('home'))
         else:
-            print(contactus.errors)
+            print(contactus_form.errors)
     else:
         contactus_form = ContactUsForm()
     return render(request,'company/contactus.html',
