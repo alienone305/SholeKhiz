@@ -26,6 +26,7 @@
           <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >شهر</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.city }}</div>
           <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >شماره تماس ثابت</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.phone_number }}</div>
           <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >شماره همراه</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.cellphone_number }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >آدرس</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.address }}</div>
           <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >دارای انبار</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{% if delegation_request.has_reservoir %}بله{% else %}خیر{% endif %}</div>
           <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >درخواست نمایندگی برای:</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{% if delegation_request.for_towerdryer %}حوله خشک کن{% endif %}
 {% if delegation_request.for_package %}پکیج{% endif %}
@@ -40,7 +41,7 @@
           <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >تخمین از فروش آبگرمکن</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.sell_prediction_waterheater }}</div>
           <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >سوابق کاری</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.attendance }}</div>
           <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >نوع مالکیت ملک</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.ownership_type }}</div>
-          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >توضیحات</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.descriprion }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >توضیحات</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{delegation_request.description }}</div>
 <br>
       </div>
 </div>

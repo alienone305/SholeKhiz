@@ -1,0 +1,74 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+درخواست های سرویس کاری | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">درخواست های نمایندگی</h3>
+<div style="padding:5%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+{% if repairman_request_list %}
+{% for repairman_request in repairman_request_list %}
+
+      <div class="uk-width-1-1 uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+      <div style="margin-top:-25px; font-size:20px;"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >نام</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.name }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >نام خانوادگی</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.last_name }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >سن</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.age }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >استان</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.province }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >شهر</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.city }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >شماره تماس ثابت</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.phone_number }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >شماره همراه</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.cellphone_number }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >آدرس</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.address }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >وضعیت تاهل: مجرد</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{% if repairman_request.is_single %}بله{% else %}خیر{% endif %}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >درخواست سرویس کاری برای:</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{% if repairman_request.for_towerdryer %}حوله خشک کن {% endif %}
+{% if repairman_request.for_package %}پکیج {% endif %}
+{% if repairman_request.for_radiator %}رادیاتور {% endif %}
+{% if repairman_request.for_waterheater %}آبگرمکن {% endif %}
+          </div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >مدرک تحصیلی</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{repairman_request.college_evidence }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >رشته تحصیلی</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{repairman_request.field_of_study }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >نمره تحصیلی</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{repairman_request.college_score }}</div>
+          <div class="uk-width-1-6 uk-text-left redC-text" >نام محل تحصیل</div><div class="uk-width-1-6 uk-text-right darkgreyC-text">{{repairman_request.name_of_college }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >دارای محل کار قابت</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{% if repairman_request.has_office %}بله{% else %}خیر{% endif %}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >امکان سفر به شهر های دیگر</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{% if repairman_request.can_travel %}بله{% else %}خیر{% endif %}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >سوابق کاری</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.attendance }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >تجربیات</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.experience }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >گواهی نامه ها</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.certificates }}</div>
+          <div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >توضیحات</div><div class="uk-width-1-6@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{repairman_request.descriprion }}</div>
+<br>
+      </div>
+</div>
+
+</div>
+
+{% endfor %}
+{% else %}
+<div class="uk-width-1-1 uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+<div style="margin-top:-25px"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+    <div class="uk-width-1- uk-text-center redC-text" >فعلا هیچ درخواست نمایندگی وجود ندارد.
+<br>
+با تشکر از همکاری شما
+<br>
+شعله خیز.
+    </div>
+
+
+</div>
+
+
+
+</div>
+
+</div>
+{% endif %}
+</div>
+    {% endblock %}

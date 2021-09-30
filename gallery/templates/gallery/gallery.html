@@ -1,4 +1,4 @@
-{% extends "BaseTemplates/base1.html" %}
+{% extends "BaseTemplates/base2.html" %}
 
 {% block head_block %}
 <meta name=”robots” content=”noindex,follow”>
@@ -7,40 +7,103 @@
 </title>
 {% endblock %}
 {% block body_block %}
+
 <br>
-<h1 style="text-shadow: 0 0 20px blue, 0 0 30px black" class="uk-text-center whiteC-text fHarmattan">گالری</h1>
-<br><br>
-<div style="margin:20px;" uk-slider>
+<h3 style="font-size:50px; text-shadow: 0 0 3px red, 5px 5px 9px black;" class="redC-text uk-card-title uk-text-center fHarmattan uk-text-large">گالری</h3>
 
-    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: scale" >
-
-        <ul class="uk-slider-items uk-child-width-1-2@s uk-grid " uk-lightbox="animation: scale">
-          {% for photo in photos %}
-            <li >
-                <div class="uk-card uk-card-default ">
-
-                    <div class="uk-card-media-top">
-                      <a class="uk-inline" href="{{photo.picture.url}}" data-caption="{{photo.description}}">
-    <img src="{{photo.picture.url}}" alt="">
-</a>
-
-                    </div>
-                    <div class="uk-card-body">
-                        <p class="fHarmattan">{{photo.description}}</p>
-                    </div>
+<div style="margin:2%; font-size:25px; border-bottom:1px solid #ff0a0a;" class="fHarmattan redC-text uk-text-right">
+  عکس های محصولات >
+</div><br>
+<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="clsActivated: uk-transition-active;center: true;autoplay: true;autoplay-interval: 2000">
+    <ul class="uk-slider-items uk-grid" uk-lightbox="animation: slide">
+        {% for photo in photos %}
+{% if photo.for_product %}
+        <li class="uk-width-2-5 ">
+            <a class="uk-panel uk-inline" href="{{photo.picture.url}}"  >
+                <img width="2000" height="2000" src="{{photo.picture.url}}" alt=""  >
+                <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom">
+                    <p class="uk-margin-remove">{{photo.description}}</p>
                 </div>
-            </li>
-            {% endfor %}
+            </a>
+        </li>
+{% endif %}
+{% endfor %}
+    </ul>
 
-        </ul>
-
-        <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-        <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
-
-    </div>
-
-    <ul style="color:white;" class="uk-slider-nav uk-dotnav uk-flex-center uk-margin whitec-text"></ul>
-
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
 </div>
+<br>
+<div style="margin:2%; font-size:25px; border-bottom:1px solid #ff0a0a;" class="fHarmattan redC-text uk-text-right">
+  عکس های کارخانه >
+</div><br>
+<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="clsActivated: uk-transition-active; center: true;autoplay: true;autoplay-interval: 2000">
+    <ul class="uk-slider-items uk-grid" uk-lightbox="animation: slide">
+        {% for photo in photos %}
+        {% if photo.for_factory %}
+        <li class="uk-width-2-5 ">
+            <a class="uk-panel uk-inline" href="{{photo.picture.url}}"  >
+                <img width="2000" height="2000" src="{{photo.picture.url}}" alt=""  >
+                <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom">
+                    <p class="uk-margin-remove">{{photo.description}}</p>
+                </div>
+            </a>
+        </li>
+        {% endif %}
+{% endfor %}
+    </ul>
+
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+</div>
+
+<div style="margin:2%; font-size:25px; border-bottom:1px solid #ff0a0a;" class="fHarmattan redC-text uk-text-right">
+  عکس های کارکنان >
+</div><br>
+<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="clsActivated: uk-transition-active;center: true;autoplay: true;autoplay-interval: 2000">
+    <ul class="uk-slider-items uk-grid" uk-lightbox="animation: slide">
+        {% for photo in photos %}
+        {% if photo.for_workers %}
+        <li class="uk-width-2-5 ">
+            <a class="uk-panel uk-inline" href="{{photo.picture.url}}"  >
+                <img width="2000" height="2000" src="{{photo.picture.url}}" alt=""  >
+                <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom">
+                    <p class="uk-margin-remove">{{photo.description}}</p>
+                </div>
+            </a>
+        </li>
+        {% endif %}
+{% endfor %}
+    </ul>
+
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+</div>
+
+<div style="margin:2%; font-size:25px; border-bottom:1px solid #ff0a0a;" class="fHarmattan redC-text uk-text-right">
+  عکس های دیگر >
+</div><br>
+<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="clsActivated: uk-transition-active;center: true;autoplay: true;autoplay-interval: 2000">
+    <ul class="uk-slider-items uk-grid" uk-lightbox="animation: slide">
+        {% for photo in photos %}
+        {% if photo.for_sundry %}
+        <li class="uk-width-2-5 ">
+            <a class="uk-panel uk-inline" href="{{photo.picture.url}}"  >
+                <img width="2000" height="2000" src="{{photo.picture.url}}" alt=""  >
+                <div class="uk-overlay uk-overlay-primary uk-position-bottom uk-text-center uk-transition-slide-bottom">
+                    <p class="uk-margin-remove">{{photo.description}}</p>
+                </div>
+            </a>
+        </li>
+        {% endif %}
+{% endfor %}
+    </ul>
+
+    <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+</div>
+
+
+
 
 {% endblock %}

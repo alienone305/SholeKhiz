@@ -24,7 +24,7 @@ from accounts.decorators import superuser_required
 @login_required
 @commonuser_required
 def OrderingView(request, pk):
-    api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
+    #api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
     product = get_object_or_404(ProductsModel, pk= pk)
     if request.method == 'POST':
         ordering_form = OrderingForm(data = request.POST)
@@ -33,12 +33,8 @@ def OrderingView(request, pk):
              order.user = request.user
              order.product = product
              order.save()
-             params = {
-                 'sender': settings.KAVENEGAR_PHONE_NUMBER,
-                 'receptor': request.user.commonusers.phone_number,
-                 'message' : 'سفارش شما با موفقیت ثبت شد.\nمدیران ما در اولین فرصت درخواست شما را بررسی کرده و با شما تماس خواهند گرفت\n\nگروه صنعتی شعله خیز'
-                 }
-             response = api.sms_send(params)
+
+             #response = api.sms_send(params)
              return HttpResponseRedirect(reverse('home'))
         else:
             print(ordering_form.errors)

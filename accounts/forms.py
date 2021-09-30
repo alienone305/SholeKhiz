@@ -19,7 +19,7 @@ class UserForm(UserCreationForm):
         super(UserForm, self).__init__(*args, **kwargs)
 
     username = forms.CharField(widget=forms.TextInput(
-        attrs={'class':'uk-input fHarmattan','placeholder':'شماره تلفن مثال 9141234567',}))
+        attrs={'class':'uk-input fHarmattan','placeholder':'شماره تلفن مثال 9141234567','id':'username','onblur':'checkLength(this)'}))
     password1 = forms.CharField(widget=forms.PasswordInput(
         attrs={
 'class':'uk-input fHarmattan redC-text','placeholder':'رمز عبور'
@@ -34,7 +34,7 @@ class UserForm(UserCreationForm):
         fields = ('username','email',
                   'name','password1','password2')
         widgets = {
-            'username': forms.TextInput(attrs={'class':'uk-input fHarmattan','placeholder':'نام کاربری'},),
+            'username': forms.TextInput(attrs={'class':'uk-input fHarmattan','placeholder':'شماره همراه','id':'username','onblur':'checkLength(this)'},),
             'name': forms.TextInput(attrs={'class':'uk-input fHarmattan','placeholder':'نام و نام خانوادگی'},),
         }
 
@@ -63,7 +63,7 @@ class UserLoginForm(AuthenticationForm):
 
 
     username = forms.CharField(widget=forms.TextInput(
-        attrs={'class':'uk-input fHarmattan redC-text','placeholder':'نام کاربری'}))
+        attrs={'class':'uk-input fHarmattan redC-text','placeholder':'شماره همراه','id':'username','onblur':'checkLength(this)'}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={
 'class':'uk-input fHarmattan redC-text','placeholder':'رمز عبور'
@@ -74,12 +74,12 @@ class UserLoginForm(AuthenticationForm):
 
 
 class PasswordChangeForm(forms.Form):
-    current_password = forms.CharField(widget=forms.PasswordInput(attrs={'style':'background-color:#212121;color:#c7a046;','class':'uk-input fHarmattan','placeholder':'رمز فعلی','id':'current_password'}))
-    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'style':'background-color:#212121;color:#c7a046;','class':'uk-input fHarmattan','placeholder':'رمز جدید','id':'new_password'}))
-    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'style':'background-color:#212121;color:#c7a046;','class':'uk-input fHarmattan','placeholder':'تکرار رمز جدید','id':'confirm_password'}))
+    current_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'uk-input fHarmattan','placeholder':'رمز فعلی','id':'current_password'}))
+    new_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'uk-input fHarmattan','placeholder':'رمز جدید','id':'new_password'}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'uk-input fHarmattan','placeholder':'تکرار رمز جدید','id':'confirm_password'}))
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])
 
 
 class ForgotPasswordForm(forms.Form):
-    phone_number = forms.CharField(required = True, widget=forms.TextInput(attrs={'class':'uk-input fHarmattan','placeholder':'مثال 9141234567','id':'username'}))
+    phone_number = forms.CharField(required = True, widget=forms.TextInput(attrs={'class':'uk-input fHarmattan','placeholder':'مثال 9141234567','id':'username','onblur':'checkLength(this)'}))
     Hfield = forms.CharField(required=False,widget =forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])

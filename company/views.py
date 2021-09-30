@@ -37,7 +37,7 @@ def ContactUsView(request):
 @superuser_required
 def ContactUsListView(request):
     try:
-        contactus_list = get_list_or_404(ContactUsModel.objects.order_by('created'))
+        contactus_list = get_list_or_404(ContactUsModel.objects.order_by('created_at'))
         return render(request,'company/contactuslist.html',
                       {'contactus_list':contactus_list})
     except:

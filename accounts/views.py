@@ -13,15 +13,17 @@ import jdatetime
 import datetime
 import random
 from django.conf import settings
+from django.contrib.auth import authenticate, login
 from django.utils import timezone
 # handmade
 
 from delegations.forms import DelegationForm
 from delegations.models import DelegationModel
 from accounts.decorators import superuser_required
-from accounts.forms import ForgotPasswordForm
+from accounts.forms import ForgotPasswordForm, PasswordChangeForm
 from accounts.models import UserModel
 from commonuser.models import CommonUserModel
+from company.utils import SendMessage
 
 @login_required
 @superuser_required
@@ -30,7 +32,6 @@ def SuperUserDashboardView(request):
 
 
 def ForgotPasswordView(request):
-    #api = KavenegarAPI(settings.KAVENEGAR_API_KEY)
     try:
         last_retry_str = request.session['last_retry']
         last_retry = datetime.datetime.strptime(last_retry_str,"%Y-%m-%d %H:%M:%S")
@@ -50,14 +51,14 @@ def ForgotPasswordView(request):
                 try :
                     user = get_object_or_404(UserModel,username = phone_number)
                     if user :
-                        var = 'abcdefghijklmnpqrstuvwxyzABCDEFIJKLMNPQRSTUVWXYZ123456789'
+                        var = 'abcdefghijkmnpqrstuvwxyzABCDEFJKLMNPQRSTUVWXYZ123456789'
                         new_password=''
                         for i in range(0,random.randrange(7,8,1)):
                             c = random.choice(var)
                             new_password += c
 
-
-                        #response = api.sms_send(params)
+                        text = 'رمز عبور جدید شما در وبسایت شعله خیز: {code}\n شعله خیز آذر'.format(code = new_password)
+                        SendMessage(number,text)
                         phone_number_exists = True
                         print(new_password)
                         user.set_password(new_password)
@@ -83,7 +84,6 @@ def ForgotPasswordView(request):
     else:
         return HttpResponseRedirect(reverse('commonuser:wait'))
 
-
 @login_required
 def PasswordChangeView(request,slug):
     user = get_object_or_404(UserModel,slug = slug)
@@ -97,7 +97,6 @@ def PasswordChangeView(request,slug):
                 if password_form.cleaned_data.get('new_password') == password_form.cleaned_data.get('confirm_password'):
                     new_password = password_form.cleaned_data.get('new_password')
                     try:
-                        validate_password(new_password,user=user, password_validators=None)
                         user.set_password(new_password)
                         user.save()
                         return HttpResponseRedirect(reverse('accounts:login'))

@@ -1,5 +1,5 @@
 from django import forms
-from cooperation.models import JobOpportunityModel, ApplicationModel, DelegationRequestModel
+from cooperation.models import JobOpportunityModel, ApplicationModel, DelegationRequestModel, RepairManRequestModel
 
 class JobOpportunityForm(forms.ModelForm):
     class Meta():
@@ -44,7 +44,7 @@ class DelegationRequestForm(forms.ModelForm):
             'sell_prediction_waterheater': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'پیش بینی از فروش آبگرمکن'},),
             'attendance': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'سابقه کاری'},),
             'ownership_type': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'نوع مالکیت ملک'},),
-            'descriprion': forms.Textarea(attrs={'class':'uk-textarea fHarmattan','rows':'4','placeholder':'توضیحات دیگر'},),
+            'description': forms.Textarea(attrs={'class':'uk-textarea fHarmattan','rows':'4','placeholder':'توضیحات دیگر'},),
         }
 
 
@@ -76,6 +76,44 @@ class ApplicationForm(forms.ModelForm):
             'computer_mastery': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'میزان تسلط بر کامپیوتر'},),
             'job_attendance': forms.Textarea(attrs={'class':'uk-textarea fHarmattan','rows':'4','placeholder':'سوابق کاری'},),
             'descriprion': forms.Textarea(attrs={'class':'uk-textarea fHarmattan','rows':'4','placeholder':'توضیحات دیگر'},),
-            'resome': forms.FileInput(attrs={'class':'fHarmattan',},),
+            'resome': forms.FileInput(attrs={'class':'fHarmattan','id':'files','help_text':'asd'},),
 
         }
+
+
+
+class RepairManRequestForm(forms.ModelForm):
+    class Meta():
+        model = RepairManRequestModel
+
+        fields = ('name','last_name','age','province','city',
+                'is_single','phone_number','cellphone_number','address',
+                'for_towerdryer','for_package','for_radiator','for_waterheater',
+                'college_evidence','field_of_study','college_score','name_of_college',
+                'has_office','can_travel','attendance','experience',
+                'certificates','description',)
+        widgets = {
+            'name': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'نام'},),
+            'last_name': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'نام خانوادگی'},),
+            'age': forms.NumberInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'سن'},),
+            'province': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'استان'},),
+            'city': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'شهر'},),
+            'is_single': forms.CheckboxInput(attrs={'class':'uk-checkbox fHarmattan'},),
+            'phone_number': forms.NumberInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'شماره تلفن ثابت'},),
+            'cellphone_number': forms.NumberInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'شماره تلفن همراه'},),
+            'address': forms.Textarea(attrs={'class':'uk-textarea fHarmattan','rows':'4','placeholder':'آدرس'},),
+            'for_towerdryer': forms.CheckboxInput(attrs={'class':'uk-checkbox fHarmattan '},),
+            'for_package': forms.CheckboxInput(attrs={'class':'uk-checkbox fHarmattan '},),
+            'for_radiator': forms.CheckboxInput(attrs={'class':'uk-checkbox fHarmattan '},),
+            'for_waterheater': forms.CheckboxInput(attrs={'class':'uk-checkbox fHarmattan '},),
+
+            'college_evidence': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'آخرین مدرک دانشگاهی'},),
+            'field_of_study': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'رشته تحصیلی'},),
+            'college_score': forms.NumberInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'نمره ی تحصیلی'},),
+            'name_of_college': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'نام دانشگاه تحصیل'},),
+            'has_office': forms.CheckboxInput(attrs={'class':'uk-checkbox fHarmattan '},),
+            'can_travel': forms.CheckboxInput(attrs={'class':'uk-checkbox fHarmattan '},),
+            'attendance': forms.Textarea(attrs={'class':'uk-textarea fHarmattan','rows':'4','placeholder':'سوابق کاری'},),
+            'experience': forms.Textarea(attrs={'class':'uk-textarea fHarmattan','rows':'4','placeholder':'تجربیات'},),
+            'certificates': forms.Textarea(attrs={'class':'uk-textarea fHarmattan','rows':'4','placeholder':'گواهی ها'},),
+            'description': forms.Textarea(attrs={'class':'uk-textarea fHarmattan','rows':'4','placeholder':'توضیحات دیگر'},),        }

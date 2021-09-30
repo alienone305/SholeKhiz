@@ -6,4 +6,4 @@ class ContactUsModel(models.Model):
     email = models.EmailField(blank = False, null = False)
     phone_number = models.CharField(max_length = 264, blank = True, null =True)
     request = models.TextField(null = True, blank = True)
-    created = models.DateTimeField(default=timezone.now())
+    created_at = models.DateTimeField(default=timezone.now())

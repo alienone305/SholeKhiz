@@ -3,35 +3,33 @@
 {% block head_block %}
 <meta name=”robots” content=”noindex,follow”>
 <title>
-لیست سفارشات | شعله خیز
+سفارشات چک شده | شعله خیز
 </title>
 {% endblock %}
 
 {% block body_block %}
 <br>
-<h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">لیست سفارشات چک شده</h3>
-<br>
-<div style="padding:2%" class="uk-grid-match uk-text-center" uk-grid>
+<h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">سفارشات چک شده</h3>
+<div style="padding:5%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+{% if order_list %}
 {% for order in order_list %}
-<div class="uk-width-1-6 uk-hidden@s ">
 
-</div>
-      <div class="uk-width-2-3 uk-width-1-2@s uk-block">
-<div class="uk-card uk-card-default uk-card-body milkywhiteC">
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s uk-block">
+<div style="border-radius:8px; " class="uk-card uk-card-default uk-card-body milkywhiteC">
 
-      <div class=" fHarmattan uk-text-large" uk-grid>
-          <div class="uk-width-1-2 uk-text-left blueC-text" >نام سفارش دهنده</div><div class="uk-width-1-2 uk-text-right redC-text">{{ order.user.name }}</div>
+      <div style="margin-top:-25px; font-size:20px;"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+          <div class="uk-width-1-2 uk-text-left redC-text" >نام سفارش دهنده</div><div class="uk-width-1-2 uk-text-right darkgreyC-text">{{ order.user.name }}</div>
 
-          <div class="uk-width-1-2 uk-text-left blueC-text" >محصول سفارش شده</div><div class="uk-width-1-2 uk-text-right redC-text">{{ order.product.name }}</div>
-
-          <div class="uk-width-1-2 uk-text-left blueC-text" >تعداد محصول</div><div class="uk-width-1-2 uk-text-right redC-text">{{order.number}}</div>
+          <div class="uk-width-1-2 uk-text-left redC-text" >محصول سفارش شده</div><div class="uk-width-1-2 uk-text-right darkgreyC-text">{{ order.product.name }}</div>
+          <div class="uk-width-1-2 uk-text-left redC-text" >تعداد سفارش</div><div class="uk-width-1-2 uk-text-right darkgreyC-text">{{order.number}}</div>
 
 <br>
 {% if user.is_superuser %}
-<div class="uk-width-1 uk-text-right">
+<div class="uk-width-1-1 uk-text-right">
 <a class="uk-button uk-button-large redC whiteC-text fHarmattan uk-text-large uk-width-1-1" href="{% url 'order:detail' order.pk %}" >جزئیات</a>
 </div>
 {% endif %}
+
       </div>
 
 
@@ -40,9 +38,26 @@
 
 </div>
 
-<div class="uk-width-1-6 uk-hidden@s">
+{% endfor %}
+{% else %}
+<div class="uk-width-1-1 uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+<div style="margin-top:-25px"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+    <div class="uk-width-1- uk-text-center redC-text" >فعلا هیچ سفارش چک شده ای وجود ندارد
+
+<br>
+شعله خیز.
+    </div>
+
 
 </div>
-{% endfor %}
+
+
+
+</div>
+
+</div>
+{% endif %}
 </div>
     {% endblock %}

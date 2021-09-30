@@ -34,7 +34,7 @@ def CreatePhotoView(request):
     else:
         gallery_form = GalleryForm()
     return render(request,'gallery/createphoto.html',
-                  {'gallery_form':gallery_form})
+                  {'form':gallery_form})
 
 @login_required
 @superuser_required
@@ -68,7 +68,7 @@ def PhotoUpdateView(request,pk):
         photo.save()
         return HttpResponseRedirect(reverse('gallery:photolist'))
     return render(request,'gallery/photoupdate.html',
-                          {'gallery_form':photo_update_form,
+                          {'form':photo_update_form,
                           'photo':photo})
 
 

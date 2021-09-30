@@ -27,50 +27,55 @@
             <nav class="uk-navbar-container uk-margin" style="position: fixed;right: 0;left: 0;top: 0;z-index: 1030;box-shadow: 0 15px 17px rgba(0, 0,0, 0.18);" uk-navbar>
                 <div class="uk-navbar-center">
                   <div class="uk-navbar-center-left"><div>
-    <ul class="uk-navbar-nav uk-visible@s">
+    <ul  class="uk-navbar-nav uk-visible@m">
       <li>
-    <a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " class="  " href="#">محصولات و سفارش</a>
-    <div  class="uk-navbar-dropdown milkywhite" style="margin-top:-10px; background-color:#e3e3e3;">
+    <a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px; " class="  " href="#">محصولات و سفارش</a>
+    <div  class="uk-navbar-dropdown " style="margin-top:-10px; background-color:#f2f2f2;">
         <ul class="uk-nav uk-navbar-dropdown-nav">
-            <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'products:radiatorlist' %}">رادیاتور پانلی</a></li>
-            <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'products:towerdryerlist' %}">حوله خشک کن</a></li>
-            <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'products:packagelist' %}">پکیج دیواری</a></li>
-            <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'products:waterheaterlist' %}">آبگرمکن</a></li>
+            <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px; " href="{% url 'products:radiatorlist' %}">رادیاتور پانلی</a></li>
+            <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px; " href="{% url 'products:towerdryerlist' %}">حوله خشک کن</a></li>
+            <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px; " href="{% url 'products:packagelist' %}">پکیج دیواری</a></li>
+            <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px; " href="{% url 'products:waterheaterlist' %}">آبگرمکن</a></li>
         </ul>
     </div>
 </li>
 <li>
-<a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " class="  " href="#">همکاری</a>
-<div  class="uk-navbar-dropdown milkywhite" style="margin-top:-10px; background-color:#e3e3e3;">
-  <ul class="uk-nav uk-navbar-dropdown-nav">
-      <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'cooperation:jobopportunitylist' %}">فرصت های شغلی</a></li>
-      <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'cooperation:createdelegationrequest' %}">درخواست نمایندگی</a></li>
+<a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px; " class="  " href="#">همکاری</a>
+<div  class="uk-navbar-dropdown" style="margin-top:-10px; background-color:#f2f2f2;">
+  <ul class="uk-nav uk-navbar-dropdown-nav ">
+      <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px; " href="{% url 'cooperation:jobopportunitylist' %}">فرصت های شغلی</a></li>
+      <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px; " href="{% url 'cooperation:createdelegationrequest' %}">درخواست نمایندگی</a></li>
+      <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px; " href="{% url 'cooperation:createrepairmanrequest' %}">درخواست سرویسکاری</a></li>
   </ul>
 </div>
 </li>
-      <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'delegations:publiclist' %}">نمایندگی ها</a></li>
-      <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'gallery:gallery' %}">گالری</a></li>
 
+      <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="{% url 'gallery:gallery' %}">گالری</a></li>
+<li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="{% url 'company:about-us' %}">درباره ما</a></li>
     </ul>
 </div></div>
         <a class="uk-navbar-item uk-logo" href="{% url 'home' %}"><img src="/media/Logo/logo.png" width="90"></a>
         <div class="uk-navbar-center-right"><div>
     <ul class="uk-navbar-nav">
-      <ul class="uk-navbar-nav uk-visible@s">
+      <ul class="uk-navbar-nav uk-visible@m">
         {% if user.is_authenticated and user.is_superuser%}
-        {% endif %}  <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'accounts:superuserdashboard' %}">داشبورد</a></li>
-        {% if user.is_authenticated %}
-        <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'logout' %}">خروج</a></li>
-
-        {% else %}
-          <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'accounts:login' %}">ورود</a></li>
-          <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'commonuser:signup' %}">عضویت</a></li>
+          <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="{% url 'accounts:superuserdashboard' %}">داشبورد</a></li>
           {% endif %}
-      <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'company:about-us' %}">درباره ما</a></li>
-      <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'company:contact-us' %}">تماس با ما</a></li>
+        {% if user.is_authenticated %}
+        <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="{% url 'logout' %}">خروج</a></li>
+        {% if user.is_commonuser %}
+        <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="{% url 'commonuser:profile' user.slug %}">پروفایل</a></li>
+        {% endif %}
+        {% else %}
+          <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="{% url 'accounts:login' %}">ورود</a></li>
+          <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="{% url 'commonuser:signup' %}">عضویت</a></li>
+          {% endif %}
+          <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="{% url 'delegations:publiclist' %}">نمایندگی ها</a></li>
+
+      <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="{% url 'company:contact-us' %}">تماس با ما</a></li>
 
       </ul>
-      <a href="#" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
+      <a href="#" class="uk-navbar-toggle uk-hidden@m redC-text" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
     </ul>
 </div></div>
 
@@ -79,29 +84,96 @@
             </nav>
         </header>
 
-        <div id="sidenav" uk-offcanvas="flip: true" class="uk-offcanvas">
-            <div class="uk-offcanvas-bar">
+        <div style="z-index:5000" id="sidenav" uk-offcanvas="flip: true" style="box-shadow: 0 15px 17px rgba(0, 0,0, 0.18);" class="uk-offcanvas milkywhiteC">
+            <div style="box-shadow: 0 15px 17px rgba(0, 0,0, 0.18);" class="uk-offcanvas-bar milkywhiteC">
                 <ul class="uk-nav">
-                    <li><a class=" " href="https://shubhamjain.co/about/">about</a></li>
-                    <li><a class=" " href="https://shubhamjain.co/">blog</a></li>
+                  {% if user.is_authenticated and user.is_superuser%}
+                    <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'accounts:superuserdashboard' %}">داشبورد</a></li>
+                    {% endif %}
+                  {% if user.is_authenticated %}
+                  <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'logout' %}">خروج</a></li>
+                  {% if user.is_commonuser %}
+                  <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'commonuser:profile' user.slug %}">پروفایل</a></li>
+                  {% endif %}
+                  {% else %}
+                    <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'accounts:login' %}">ورود</a></li>
+                    <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'commonuser:signup' %}">عضویت</a></li>
+                    {% endif %}
+                    <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'delegations:publiclist' %}">نمایندگی ها</a></li>
+
+                <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'company:contact-us' %}">تماس با ما</a></li>
+<li><span style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;">محصولات و سفارش</span></li>
+                </ul>
+
+                <ul>
+                  <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'products:radiatorlist' %}">رادیاتور پانلی</a></li>
+                  <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'products:towerdryerlist' %}">حوله خشک کن</a></li>
+                  <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'products:packagelist' %}">پکیج دیواری</a></li>
+                  <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'products:waterheaterlist' %}">آبگرمکن</a></li>
+                </ul>
+                <ul class="uk-nav">
+                  <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'gallery:gallery' %}">گالری</a></li>
+            <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;" class=" " href="{% url 'company:about-us' %}">درباره ما</a></li>
+            <li><span style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px;">همکاری</span></li>
+                </ul>
+                <ul >
+                    <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'cooperation:jobopportunitylist' %}">فرصت های شغلی</a></li>
+                    <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'cooperation:createdelegationrequest' %}">درخواست نمایندگی</a></li>
+                    <li class="uk-active"><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:20px; " href="{% url 'cooperation:createrepairmanrequest' %}">درخواست سرویسکاری</a></li>
                 </ul>
             </div>
         </div>
 <br><br><br><br>
       {% block body_block %}
       {% endblock %}
-      <footer style="background-color:#212121;margin-bottom:-25px;" class="uk-grid-match uk-grid-small uk-text-center darkgrayC"  uk-grid>
-        <br><br>
-        <div class="uk-width-1-3 darkgrayC fHarmattan uk-text-center" style="padding-right:5%">
+      <footer class="milkywhiteC" style="padding:50px;">
+<div  class="uk-grid uk-grid-small uk-child-width-1-1 uk-child-width-1-4@s fHarmattan" uk-grid>
+  <div class="uk-text-">
+<a href="{% url 'company:about-us' %}" class="redC-text">درباره ما</a><br>
+<a href="{% url 'company:contact-us' %}" class="redC-text">تماس با ما</a><br>
+<a href="{% url 'cooperation:jobopportunitylist' %}" class="redC-text">فرصت های شغلی</a><br>
+<a href="{% url 'cooperation:createdelegationrequest' %}" class="redC-text">درخواست نمایندگی</a><br>
+<a href="{% url 'cooperation:createrepairmanrequest' %}" class="redC-text">درخواست سرویسکاری</a><br>
+  </div>
+  <div class="uk-text-=">
+    <a href="{% url 'products:packagelist' %}" class="redC-text">پکیج</a><br>
+    <a href="{% url 'products:radiatorlist' %}" class="redC-text">رادیاتور</a><br>
+    <a href="{% url 'products:waterheaterlist' %}" class="redC-text">آبگرمکن</a><br>
+    <a href="{% url 'products:towerdryerlist' %}" class="redC-text">حوله خشک کن</a><br>
+<a href="{% url 'gallery:gallery' %}" class="redC-text">گالری</a><br>
+  </div>
+  <div class="uk-text-">
+    {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}" class="redC-text">خروج</a><br>
+    {% else %}
+      <a href="{% url 'accounts:login' %}" class="redC-text">ورود</a><br>
+      {% endif %}
+<a href="{% url 'commonuser:signup' %}" class="redC-text">عضویت</a><br>
+<a href="{% url 'delegations:publiclist' %}" class="redC-text">نمایندگی ها</a><br>
+<a href="#" class="redC-text">وبلاگ</a><br>
+<a href="{% url 'home' %}" class="redC-text">صفحه اصلی</a><br>
+  </div>
+  <div class="uk-text-center">
+    <a href="#" class="redC-text"> <img width="35" src="/media/Logo/telegram.png" alt=""></a><br>
+    <a href="#" class="redC-text"><img width="35" src="/media/Logo/instagram.png" alt=""></a><br>
+
+  </div>
+</div>
+
+
+
+</footer>
+      <span class="uk-grid-match uk-grid-small uk-text-center "  uk-grid>
+
+        <div class="uk-width-1-3 whiteC-text fHarmattan uk-text-center" style="padding-right:5%">
 طراحی سایت فرساد
-<br>
 09368361943
         </div>
-            <div class="uk-width-2-3  darkgrayC fHarmattan uk-text-justify" style="padding-right:5%">
+            <div class="uk-width-2-3  whiteC-text fHarmattan uk-text-justify" style="padding-right:5%">
               تمام حقوق تحت شرکت شعله خیز آذر محفوظ است.
         </div>
-        <br><br>
-      </footer>
+
+      </span>
       {% block script_block %}
       {% endblock %}
     </body>

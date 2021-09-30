@@ -3,34 +3,62 @@
 {% block head_block %}
 <meta name=”robots” content=”noindex,follow”>
 <title>
-افزودن عکس | شعله خیز
+ویرایش عکس | شعله خیز
 </title>
 {% endblock %}
 
 {% block body_block %}
 <br>
-<div class="uk-grid-match uk-grid-small uk-text-center redC" uk-grid>
-  <div class="uk-width-1-6 uk-width-1-4@m">
+<div style="padding:7%">
 
-  </div>
-      <div class="uk-width-2-3 uk-width-1-2@m uk-block milkywhiteC">
-<div class="uk-card uk-card uk-card-body">
-    <h3 style="font-size:30px;" class="redC-text uk-card-title uk-align-center fHarmattan">افزودن عکس</h3>
+
+<div style="padding: 1%;border-radius: 8px;" uk-grid>
+<div class=" uk-width-1-1 uk-block fHarmattan ">
+<div class="uk-card uk-card-body milkywhiteC ">
+<div class="uk-card uk-card uk-card-body uk-text-center">
+    <h1 style="font-size:30px;" class="redC-text uk-card-title uk-align-center fHarmattan">ویرایش عکس</h1>
     <form enctype="multipart/form-data" method="POST">
       {% csrf_token %}
-      <div class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
-        <div class="uk-width-1">
-        {{gallery_form.picture}}
+      <div  class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
+
+      <div class="uk-width-1-1 uk-width-1-3@m">
+{{form.picture}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-2-3@m">
+      {{form.description}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-4@m uk-width-1-2@s">
+        <div class="uk-text-right" style="whitespace:pre;">
+       عکس محصولات  {{form.for_product}}
         </div>
-      <div class="uk-width-1">
-      {{gallery_form.description}}
       </div>
-      <div class="uk-width-1-2@m">
-      {{delegation_form.errors}}
+
+      <div class="uk-width-1-1 uk-width-1-4@m uk-width-1-2@s">
+        <div class="uk-text-right" style="whitespace:pre;">
+       عکس کارخانه  {{form.for_factory}}
+        </div>
+
       </div>
+
+      <div class="uk-width-1-1 uk-width-1-4@m uk-width-1-2@s">
+        <div class="uk-text-right" style="whitespace:pre;">
+       عکس کارکنان  {{form.for_workers}}
+        </div>
+
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-4@m uk-width-1-2@s">
+        <div class="uk-text-right" style="whitespace:pre;">
+       عکس متفرقه  {{form.for_sundry}}
+        </div>
+
       </div>
 
 
+
+      </div>
       <br>
       <button style="margin-top:20px;" class="uk-button uk-button-primary fHarmattan redC " type="submit">تایید
     </button>
@@ -39,8 +67,9 @@
 
 
 </div>
-<div class="uk-width-1-6 uk-width-1-4@m">
+</div>
+</div>
+</div>
+<br><br>
 
-</div>
-</div>
     {% endblock %}

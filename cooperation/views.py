@@ -11,8 +11,8 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_list_or_404
 
 #handmade
-from cooperation.models import JobOpportunityModel, ApplicationModel, DelegationRequestModel
-from cooperation.forms import JobOpportunityForm, ApplicationForm, DelegationRequestForm
+from cooperation.models import JobOpportunityModel, ApplicationModel, DelegationRequestModel, RepairManRequestModel
+from cooperation.forms import JobOpportunityForm, ApplicationForm, DelegationRequestForm, RepairManRequestForm
 from accounts.decorators import superuser_required
 
 
@@ -108,9 +108,35 @@ def CreateDelegationRequestView(request):
 @login_required
 @superuser_required
 def DelegationRequestListView(request):
-#    try:
+    try:
         delegation_request_list = get_list_or_404(DelegationRequestModel.objects.all())
         return render(request,'cooperation/delegationrequestlist.html',
                       {'delegation_request_list':delegation_request_list})
-#    except:
-#        return render(request,'cooperation/delegationrequestlist.html')
+    except:
+        return render(request,'cooperation/delegationrequestlist.html')
+
+
+def CreateRepairManRequestView(request):
+    if request.method == 'POST':
+        repairman_request_form = RepairManRequestForm(data = request.POST)
+        if repairman_request_form.is_valid():
+             repairman_request = repairman_request_form.save(commit=False)
+             repairman_request.save()
+             return HttpResponseRedirect(reverse('home'))
+        else:
+            print(repairman_request_form.errors)
+    else:
+        repairman_request_form = RepairManRequestForm()
+    return render(request,'cooperation/createrepairmanrequest.html',
+                  {'repairman_request_form':repairman_request_form})
+
+
+@login_required
+@superuser_required
+def RepairManRequestListView(request):
+    try:
+        repairman_request_list = get_list_or_404(RepairManRequestModel.objects.all())
+        return render(request,'cooperation/repairmanrequestlist.html',
+                      {'repairman_request_list':repairman_request_list})
+    except:
+        return render(request,'cooperation/repairmanrequestlist.html')

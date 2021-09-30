@@ -1,23 +1,54 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <div class="row">
-      <div class="col s6 m6 l6 right-align fHarmattan ">{{commonuser_detail.user.username}}</div>
-      <div class="col s6 m6 l6 left-align">نام کاربری</div>
-    </div>
-    <div class="row">
-      <div class="col s6 m6 l6 right-align fHarmattan">{{commonuser_detail.user.first_name}}/{{commonuser_detail.user.last_name}}</div>
-      <div class="col s6 m6 l6 left-align">نام و نام خانوادگی</div>
-    </div>
-    <div class="row">
-      <div class="col s6 m6 l6 right-align fHarmattan">{{commonuser_detail.user.email}}</div>
-      <div class="col s6 m6 l6 left-align">ایمیل</div>
-    </div>
-    </h6>
-<div class="col s12 m6 l6 center-align"><a style="white-space:pre" href="{% url 'commonuser:update' commonuser_detail.user.slug %}" class="waves-effect waves-light btn modal-trigger modal-close gold white-text"><h6>               <span>ویرایش مشخصات</span>               </h6></a><p></p></div>
-  </body>
-</html>
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+پروفایل | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">پروفایل</h3>
+<div style="padding:5%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+
+      <div class="uk-width-1-1 uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+      <div style="margin-top:-25px; font-size:20px;"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid><br>
+          <div class="uk-width-1-4@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >نام کاربری</div><div class="uk-width-1-4@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{user.username }}</div>
+          <div class="uk-width-1-4@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >نام و نام خانوادگی</div><div class="uk-width-1-4@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{user.name }}</div>
+          <div class=" uk-width-1-2 uk-text-left redC-text" >آدرس</div><div class=" uk-width-1-2 uk-text-right darkgreyC-text">{{user.commonusers.address }}</div>
+<a href="{% url 'accounts:passwordchange' user.slug %}" class="uk-button redC uk-width-1-1 uk-margin-small-bottom whiteC-text fHarmattan uk-text-large">تعویض رمز عبور</a>
+      </div>
+</div>
+
+</div>
+
+</div>
+
+{% if orders %}
+<h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">سفارشات</h3>
+{% endif %}
+
+<div style="padding:5%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+
+  {% for order in orders %}
+
+        <div class="uk-width-1-1 uk-width-1-2@m uk-block">
+  <div  class="uk-card uk-card-default uk-card-body milkywhiteC">
+
+        <div style="margin-top:-25px; font-size:20px;"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+            <div class="uk-width-1-4@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >نام محصول</div><div class="uk-width-1-4@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{order.product.name }}</div>
+            <div class="uk-width-1-4@m uk-width-1-4@s uk-width-1-2 uk-text-left redC-text" >تعداد سفارش داده شده</div><div class="uk-width-1-4@m uk-width-1-4@s uk-width-1-2 uk-text-right darkgreyC-text">{{order.number }}</div>
+            <div class=" uk-width-1-2 uk-text-left redC-text" >توضیحات</div><div class=" uk-width-1-2 uk-text-right darkgreyC-text">{{order.description }}</div>
+
+        </div>
+  </div>
+
+  </div>
+
+
+    {% endfor %}
+</div>
+    {% endblock %}

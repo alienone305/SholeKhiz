@@ -10,64 +10,65 @@
 {% block body_block %}
 <br>
 <h3 style="font-size:30px;" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">جزئیات سفارش</h3>
-<div style="padding:10%" class="uk-grid-match uk-text-center" uk-grid>
+<div style="padding:5%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
 
-      <div class="uk-width-1 uk-block">
-<div class="uk-card uk-card-default uk-card-body milkywhiteC">
 
-      <div class=" fHarmattan uk-text-large" uk-grid>
-          <div class="uk-width-1-2 uk-text-left blueC-text" >نام کاربری سفارش دهنده</div><div class="uk-width-1-2 uk-text-right redC-text">{{ order.user.username }}</div>
+      <div class="uk-width-1-1 uk-block">
+<div  class="uk-card uk-card-default uk-card-body milkywhiteC">
 
-          <div class="uk-width-1-2 uk-text-left blueC-text" >نام سفارش دهنده</div><div class="uk-width-1-2 uk-text-right redC-text">{{ order.user.name }}</div>
+      <div style="margin-top:-25px; font-size:19px"  class=" fHarmattan uk-text-large uk-grid-small" uk-grid>
+          <div class="uk-width-1-2 uk-width-1-4@s uk-text-left redC-text" >نام سفارش دهنده</div><div class="uk-width-1-2 uk-width-1-4@s uk-text-right darkgreyC-text">{{order.user.name}}</div>
+<div class="uk-width-1-2 uk-width-1-4@s uk-text-left redC-text" >نام محصول سفارش شده</div><div class="uk-width-1-2 uk-width-1-4@s uk-text-right darkgreyC-text">{{order.product.name}}</div>
+<div class="uk-width-1-2 uk-width-1-4@s uk-text-left redC-text" >تعداد سفارش شده</div><div class="uk-width-1-2 uk-width-1-4@s uk-text-right darkgreyC-text">{{order.number}}</div>
+<div class="uk-width-1-2 uk-width-1-4@s uk-text-left redC-text" >شماره تماس سفارش دهنده</div><div class="uk-width-1-2 uk-width-1-4@s uk-text-right darkgreyC-text">{{order.user.username}}</div>
+<div class="uk-width-1-1 uk-text-center redC-text" >آدرس سفارش دهنده</div><div class="uk-width-1-1  uk-text-center darkgreyC-text">{{order.user.commonusers.address}}</div>
+<div class="uk-width-1-1 uk-text-center redC-text" >توضیحات سفارش</div><div class="uk-width-1-1 uk uk-text-center darkgreyC-text">{{order.description}}</div>
 
-          <div class="uk-width-1-2 uk-text-left blueC-text" >شماره تماس</div><div class="uk-width-1-2 uk-text-right redC-text">{{ order.user.commonusers.phone_number }}</div>
 
-          <div class="uk-width-1-2 uk-text-left blueC-text" >نوع محصول سفارش شده</div><div class="uk-width-1-2 uk-text-right redC-text">
-            {% if order.product.is_package %}
-            پکیج
-            {% elif order.product.is_radiator %}
-            رادیاتور پنلی
-            {% elif order.product.is_towerdryer %}
-            حوله خشک کن
-            {% elif order.product.is_waterheater %}
-            آبگرمکن
-            {% endif %}
+          {% if user.is_superuser %}
+          <div class="uk-width-1 uk-text-right">
+          {% if order.checked %}
+          <a class="uk-button uk-button-large redC whiteC-text fHarmattan uk-text-large uk-width-1-1" href="{% url 'order:changestatus' order.pk %}" >تغییر به چک نشده</a>
+          {% else %}
+          <a class="uk-button uk-button-large redC whiteC-text fHarmattan uk-text-large uk-width-1-1" href="{% url 'order:changestatus' order.pk %}" >تغییر به چک شده</a>
+          {% endif %}
           </div>
-
-
-          <div class="uk-width-1-2 uk-text-left blueC-text" >محصول سفارش شده</div><div class="uk-width-1-2 uk-text-right redC-text">{{order.product.name}}</div>
-
-          <div class="uk-width-1-2 uk-text-left blueC-text" >تعداد محصول سفارش شده</div><div class="uk-width-1-2 uk-text-right redC-text">{{order.number}}</div>
-
-          <div class="uk-width-1-1 uk-text-center blueC-text" >توضیحات</div><div class="uk-width-1-1 uk-text-center redC-text">{{order.description}}</div>
-
+          {% endif %}
 <br>
-{% if user.is_superuser %}
-<div class="uk-width-1 uk-text-right">
-{% if order.checked %}
-<a class="uk-button uk-button-large redC whiteC-text fHarmattan uk-text-large uk-width-1-1" href="{% url 'order:changestatus' order.pk %}" >تغییر به چک نشده</a>
-{% else %}
-<a class="uk-button uk-button-large redC whiteC-text fHarmattan uk-text-large uk-width-1-1" href="{% url 'order:changestatus' order.pk %}" >تغییر به چک شده</a>
-{% endif %}
-</div>
-{% endif %}
+
       </div>
 
-
-
 </div>
 
 </div>
-
 
 </div>
     {% endblock %}
 
 
 
-تغییر به دیده نشده <a href="{% url 'order:changestatus' order.pk %}">here</a>
 
-چک کردن <a href="{% url 'order:changestatus' order.pk %}">here</a>
+    <div class="uk-width-1-2 uk-text-left blueC-text" >نوع محصول سفارش شده</div><div class="uk-width-1-2 uk-text-right redC-text">
+      {% if order.product.is_package %}
+      پکیج
+      {% elif order.product.is_radiator %}
+      رادیاتور پنلی
+      {% elif order.product.is_towerdryer %}
+      حوله خشک کن
+      {% elif order.product.is_waterheater %}
+      آبگرمکن
+      {% endif %}
+    </div>
 
-  </body>
-</html>
+
+
+
+    {% if user.is_superuser %}
+    <div class="uk-width-1 uk-text-right">
+    {% if order.checked %}
+    <a class="uk-button uk-button-large redC whiteC-text fHarmattan uk-text-large uk-width-1-1" href="{% url 'order:changestatus' order.pk %}" >تغییر به چک نشده</a>
+    {% else %}
+    <a class="uk-button uk-button-large redC whiteC-text fHarmattan uk-text-large uk-width-1-1" href="{% url 'order:changestatus' order.pk %}" >تغییر به چک شده</a>
+    {% endif %}
+    </div>
+    {% endif %}

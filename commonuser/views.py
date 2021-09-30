@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.text import slugify
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -19,6 +19,8 @@ from commonuser.forms import CommonUserForm, ConfirmationForm
 from accounts.models import UserModel
 from commonuser.models import CommonUserModel
 from commonuser.decorators import commonuser_required
+from order.models import OrderingModel
+from company.utils import SendMessage
 
 
 def CommonUserSignupView(request):
@@ -50,16 +52,12 @@ def CommonUserSignupView(request):
                      random_code += c
                  code = random_code
                  phone_number = '0' + user_form.cleaned_data.get('username')
-                 ######### send code to commonuser
-                 '''
-                 params = {
-                 'sender': settings.KAVENEGAR_PHONE_NUMBER,
-                 'receptor': phone_number,
-                 'message' : 'سایت زر مارکت \n' +'کد فعالسازی شما' +  ' :' + code
-                 }
-                 '''
+
+                 text = 'کد فعال سازی شما: {code} \n شعله خیز آذر'.format(code = code)
+
+
                  try:
-                    # response = api.sms_send(params)
+                     SendMessage(phone_number, text)
                      request.session['code'] =  code
                      now = datetime.datetime.now() + datetime.timedelta(minutes=2)
                      str_now = str(now.year)+'-'+str(now.month)+'-'+str(now.day)+' '+str(now.hour)+':'+str(now.minute)+':'+str(now.second)
@@ -72,7 +70,7 @@ def CommonUserSignupView(request):
 
 
                  except:
-                     return HttpResponseRedirect(reverse('accounts:wrongphonenumber'))
+                     return HttpResponseRedirect(reverse('commonuser:wrongphonenumber'))
 
 
                  return HttpResponseRedirect(reverse('commonuser:confirm'))
@@ -130,15 +128,22 @@ def TwoMinWaitView(request):
     return render(request,'commonuser/wait.html')
 
 def WrongPhoneNumberView(request):
-    return render(request,'commonuser/wrongphonenumber.html')    
+    return render(request,'commonuser/wrongphonenumber.html')
+
 
 @login_required
 def CommonUserProfileView(request,slug):
     user_instance = get_object_or_404(UserModel,slug = slug)
     commonuser_instance = get_object_or_404(CommonUserModel, user = user_instance)
-    if request.user == user_instance:
-        return render(request,'commonuser/commonuserprofile.html',
-                     {'commonuser_detail':commonuser_instance})
+    try:
+        orders = get_list_or_404(OrderingModel, user = user_instance)
+        if request.user == user_instance:
+            return render(request,'commonuser/commonuserprofile.html',
+                         {'commonuser_detail':commonuser_instance,'orders':orders})
+    except:
+        if request.user == user_instance:
+            return render(request,'commonuser/commonuserprofile.html',
+                         {'commonuser_detail':commonuser_instance})
 
 
 @login_required

@@ -2,6 +2,7 @@
 
 {% block head_block %}
 <meta name=”robots” content=”noindex,follow”>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <title>
 ثبت نام | شعله خیز
 </title>
@@ -18,9 +19,20 @@
               {{commonuser_form.Hfield}}
       <div class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
 
-      <div class="uk-width-1-2@m">
-{{user_form.username}}
+        <div class="uk-width-1-2@m" >
+                <div class="uk-width-2-3">
+      {{user_form.username}}
       </div>
+          <div class="uk-width-1-6 redC-text " style="direction:ltr; font-size:18px;padding-top:5px; " >
+  +98
+          </div>
+          <div class="uk-width-1-6 goldC-text " style="direction:ltr; font-size:18px;padding-top:5px; " >
+            <span id="phonenumbervalidator" class="helper-text" data-error="wrong" data-success="right"></span>
+
+          </div>
+
+        </div>
+
       <div class="uk-width-1-2@m">
       {{user_form.name}}
       </div>
@@ -56,9 +68,10 @@
 
       </div>
       <br>
-      <button style="margin-top:20px;" class="uk-button uk-button-primary fHarmattan redC " type="submit">تایید
-    </button>
-    
+      <div id="button">
+
+</div>
+
     </form>
 </div>
 </div>
@@ -84,4 +97,47 @@
     <a class="uk-button uk-button-large redC-text whiteC fHarmattan uk-text-large" href="{% url 'accounts:login' %}">ورود</a>
   </div>
 <br><br>
+{% endblock %}
+
+{% block script_block %}
+<script type="text/javascript">
+  function myFunction() {
+  // Get the checkbox
+  var checkBox = document.getElementById("myCheck");
+  // Get the output text
+  var text = document.getElementById("text");
+
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+    text.style.display = "none";
+  }
+}
+</script>
+
+<script>
+  function checkLength(el) {
+    if (el.value.length == 10) {
+var str = "<i class='right tiny material-icons goldC-text'>done_all</i>";
+var result = str.fontcolor("green");
+var str2 = "       <button style='margin-top:20px;' class='uk-button uk-button-primary fHarmattan redC' type='submit'>تایید</button>";
+var result2 = str2.fontcolor("green");
+document.getElementById("phonenumbervalidator").innerHTML = result;
+document.getElementById("button").innerHTML = result2;
+
+    }
+    if (isNaN(el.value) || el.value.length != 10 && el.value.length !=0) {
+var str = "<i class='right tiny material-icons redC-text'>close</i>";
+var result = str.fontcolor("red");
+document.getElementById("phonenumbervalidator").innerHTML = result;
+var str2 = "";
+var result2 = str2.fontcolor("green");
+document.getElementById("button").innerHTML = result2;
+
+    }
+
+
+  }
+</script>
 {% endblock %}

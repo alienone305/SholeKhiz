@@ -1,0 +1,178 @@
+{% extends "BaseTemplates/base1.html" %}
+
+{% block head_block %}
+<meta name=”robots” content=”noindex,follow”>
+<title>
+درخواست کد سرویس کاری | شعله خیز
+</title>
+{% endblock %}
+
+{% block body_block %}
+<br>
+<div style="padding:7%">
+
+
+<div style="padding: 1%;border-radius: 8px;" uk-grid>
+<div class=" uk-width-1-1 uk-block fHarmattan ">
+<div class="uk-card uk-card-body milkywhiteC ">
+<div class="uk-card uk-card uk-card-body uk-text-center">
+    <h1 style="font-size:30px;" class="redC-text uk-card-title uk-align-center fHarmattan">درخواست کد سرویس کاری</h1>
+    <form enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      <ul uk-accordion="multiple: true">
+    <li class="uk-open" style="border-right:5px #ff0a0a solid; padding-right:15px;">
+        <a class="uk-accordion-title whiteC" href="#">اطلاعات اجباری</a>
+        <div class="uk-accordion-content">
+
+      <div  class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
+
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.name}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.last_name}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.age}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.province}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.city}}
+      </div>
+
+
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.phone_number}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.cellphone_number}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.address}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+        <div class="uk-text-right" style="whitespace:pre;">
+       وضعیت تاهل: مجرد  {{repairman_request_form.is_single}}
+        </div>
+
+      </div>
+
+      <div style="border-bottom: solid 1px red;" class="uk-width-1-1 redC-text">
+درخواست سرویس کاری کدام محصولات را دارید
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-4@m uk-width-1-2@s">
+        <div class="uk-text-right" style="whitespace:pre;">
+       حوله خشک کن  {{repairman_request_form.for_towerdryer}}
+        </div>
+
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-4@m uk-width-1-2@s">
+        <div class="uk-text-right" style="whitespace:pre;">
+         پکیج  {{repairman_request_form.for_package}}
+        </div>
+
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-4@m uk-width-1-2@s">
+        <div class="uk-text-right" style="whitespace:pre;">
+         رادیاتور  {{repairman_request_form.for_radiator}}
+        </div>
+
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-4@m uk-width-1-2@s">
+        <div class="uk-text-right" style="whitespace:pre;">
+         آبگرمکن  {{repairman_request_form.for_waterheater}}
+        </div>
+
+
+
+  </div>
+
+        </div>
+        </div>
+    </li>
+    <li style="border-right:5px #ff0a0a solid; padding-right:15px;">
+        <a class="whiteC uk-accordion-title" href="#">اطلاعات دیگر</a>
+        <div class="uk-accordion-content">
+
+      <div  class="uk-grid-match uk-grid-small uk-text-center" uk-grid>
+        <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+  {{repairman_request_form.college_evidence}}
+        </div>
+
+        <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+  {{repairman_request_form.field_of_study}}
+        </div>
+
+        <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+  {{repairman_request_form.college_score}}
+        </div>
+
+        <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+  {{repairman_request_form.name_of_college}}
+        </div>
+
+        <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+          <div class="uk-text-right" style="whitespace:pre;">
+           امکان سفر به شهر های اطرف را دارید؟  {{repairman_request_form.can_travel}}
+          </div>
+
+        </div>
+
+        <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+          <div class="uk-text-right" style="whitespace:pre;">
+           دارای محل کار ثابت می باشید؟  {{repairman_request_form.has_office}}
+          </div>
+
+        </div>
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.attendance}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.experience}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.certificates}}
+      </div>
+
+      <div class="uk-width-1-1 uk-width-1-3@m uk-width-1-2@s">
+{{repairman_request_form.description}}
+      </div>
+
+    </div>
+    </div>
+</li>
+</ul>
+
+      <br>
+      {{repairman_request_form.errors}}
+      <button style="margin-top:20px;" class="uk-button uk-button-primary fHarmattan redC " type="submit">تایید
+    </button>
+    </form>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+<br><br>
+
+    {% endblock %}

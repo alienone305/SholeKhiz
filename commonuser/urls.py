@@ -9,9 +9,7 @@ urlpatterns = [
     path('confirm/',UserConfirmView, name='confirm'),
     path('wait/',TwoMinWaitView, name='twominwait'),
     path('wrong-number/',WrongPhoneNumberView, name='wrongphonenumber'),
-    path('profile/<slug:slug>/',CommonUserProfileView,
-         name = 'profile'),
-    path('update/<slug:slug>/',CommonUserUpdateView,
-         name = 'update'),
+    path('profile/<slug:slug>/',CommonUserProfileView, name = 'profile'),
+    path('update/<slug:slug>/',CommonUserUpdateView, name = 'update'),
 
 ]

@@ -8,110 +8,83 @@
 {% endblock %}
 
 {% block body_block %}
-<br>
-<h3 style="font-size:40px; text-shadow: 0 0 20px blue, 0 0 30px black" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">محصولات</h3>
-<br>
-<div style="padding:4%" class="uk-grid-match uk-text-center uk-grid-large" uk-grid>
+
+<h3 style="font-size:40px; text-shadow: 0 0 20px black, 0 0 30px black" class="whiteC-text uk-card-title uk-text-center fHarmattan uk-text-large">لیست محصولات</h3>
+<div style="padding:4%" class="uk-grid-match uk-text-center uk-grid-small" uk-grid>
 {% for product in products %}
 
-      <div class="uk-width-1-1 uk-width-1-2@s uk-block fHarmattan">
-{% if not forloop.counter|divisibleby:2 %}
-  <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-scrollspy=" cls: uk-animation-fade; delay: 100" uk-grid>
-      <div class="uk-card-media-left uk-cover-container">
-          <img src="{{product.picture.url}}" alt="" uk-cover>
-          <canvas width="600" height="400"></canvas>
-      </div>
-      <div>
-          <div class="uk-card-body fHarmattan">
-              <h3 class="uk-card-title fHarmattan uk-text-bold">
-{% if product.is_package %}
-پکیج
-{% elif product.is_radiator %}
-رادیاتور پنلی
-{% elif product.is_towerdryer %}
-حوله خشک کن
-{% elif product.is_waterheater %}
-آبگرمکن
-{% endif %}<br></h3>
-            <h3 class="fHarmattan">   {{product.name}}</h3>
-              <p class="uk-text-right uk-text-justify">{{product.description}}</p>
+      <div class="uk-width-1-1 uk-width-1-2@s uk-width-1-3@m uk-block fHarmattan">
 
-              {% if user.is_superuser %}
-              <br><br><br><br><br><br><br><br><br><br>
-              <div style="margin-right:0px;" class="uk-position-bottom" uk-grid>
-                <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan uk-width-1-4" href="#">کاتالوگ</a>
-                <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan uk-width-1-4" uk-toggle="target: #modal-delete{{product.pk}}">حدف</a>
-                <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan uk-width-1-4" href="{% url 'products:update' product.pk %}">ویرایش</a>
-                <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan uk-width-1-4" href="#">مشخصات</a>
+        <div style="border-radius: 8px;" class="uk-card uk-card-default whiteC">
+            <div style=" padding:6px;" class="uk-card-media-top">
+
+                <img style="border-radius: 8px; " src="{{product.picture.url}}">
+
+            </div>
+            <div class="uk-card-body">
+              <div  class="uk-grid uk-grid-small darkgreyC-text" uk-grid>
+                <div class="uk-card-title fHarmattan uk-text-bold uk-width-1-1 uk-text-right redC-text" style="color:#ff0a0a;">
+{{product.name}}
+</div>
+
+                <div class="uk-text-right uk-text-justify ">{{product.description|linebreaks}}</div>
+
               </div>
-              <div id="modal-delete{{product.pk}}" uk-modal>
+            </div>
+        </div>
+    {% if user.is_superuser %}
+        <a style="border-top:solid 4px #ff0a0a; font-size:20px;border-radius: 8px;" class="uk-button uk-button-large whiteC redC-text fHarmattan " href="#">کاتالوگ</a>
+        <a style="border-top:solid 4px #ff0a0a; font-size:20px;border-radius: 8px;" class="uk-button uk-button-large whiteC redC-text fHarmattan " uk-toggle="target: #modal-delete{{product.pk}}">حذف</a>
+        <a style="border-top:solid 4px #ff0a0a; font-size:20px;border-radius: 8px;" class="uk-button uk-button-large whiteC redC-text fHarmattan " href="{% url 'products:update' product.pk %}">ویرایش</a>
+        <div id="modal-delete{{product.pk}}" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title fHarmattan ">اطمینان در حذف؟</h2>
-        <p class="fHarmattan">با حذف این محصول، تمامی مشخصات آن اعم از کاتالوگ و ریز مشخصات از دیتابیس حذف خواهد شد.</p>
-        <p class="uk-text-right">
-            <button class="uk-button uk-button-large uk-modal-close fHarmattan" type="button">لغو</button>
-            <a style="font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan " href="{% url 'products:delete' product.pk %}" >حدف</a>
-        </p>
+    <h2 class="uk-modal-title fHarmattan ">اطمینان در حذف؟</h2>
+    <p class="fHarmattan">با حذف این محصول، تمامی مشخصات آن اعم از کاتالوگ و ریز مشخصات از دیتابیس حذف خواهد شد.</p>
+    <p class="uk-text-right">
+      <button class="uk-button uk-button-large uk-modal-close fHarmattan" type="button">لغو</button>
+      <a style="font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan " href="{% url 'products:delete' product.pk %}" >حدف</a>
+    </p>
     </div>
-</div>
-              {% else %}
-              <br><br><br><br><br><br><br><br><br><br>
-
-{% endif %}
-          </div>
-      </div>
-  </div>
-{% else %}
-  <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-scrollspy=" cls: uk-animation-fade; delay: 100" uk-grid>
-      <div class="uk-flex-last@s uk-card-media-right uk-cover-container">
-          <img src="{{product.picture.url}}" alt="" uk-cover>
-          <canvas width="600" height="400"></canvas>
-      </div>
-      <div>
-        <div class="uk-card-body fHarmattan">
-            <h3 class="uk-card-title fHarmattan uk-text-bold">
-{% if product.is_package %}
-پکیج
-{% elif product.is_radiator %}
-رادیاتور پنلی
-{% elif product.is_towerdryer %}
-حوله خشک کن
-{% elif product.is_waterheater %}
-آبگرمکن
-{% endif %}<br></h3>
-          <h3 class="fHarmattan">   {{product.name}}</h3>
-            <p class="uk-text-right uk-text-justify">{{product.description}}</p>
-
-            {% if user.is_superuser %}
-              <br><br><br><br><br><br><br><br><br><br>
-              <div style="margin-right:0px;" class="uk-position-bottom" uk-grid>
-                <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan uk-width-1-4" href="#">کاتالوگ</a>
-                <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan uk-width-1-4" uk-toggle="target: #modal-delete{{product.pk}}">حدف</a>
-                <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan uk-width-1-4" href="{% url 'products:update' product.pk %}">ویرایش</a>
-                <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan uk-width-1-4" href="#">مشخصات</a>
-              </div>
-              <div id="modal-delete{{product.pk}}" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title fHarmattan ">اطمینان در حذف؟</h2>
-        <p class="fHarmattan">با حذف این محصول، تمامی مشخصات آن اعم از کاتالوگ و ریز مشخصات از دیتابیس حذف خواهد شد.</p>
-        <p class="uk-text-right">
-            <button class="uk-button uk-button-large uk-modal-close fHarmattan" type="button">لغو</button>
-            <a style="font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan " href="{% url 'products:delete' product.pk %}" >حدف</a>
-        </p>
     </div>
-</div>
-              {% else %}
-              <br><br><br><br><br><br><br><br><br><br>
-
-              {% endif %}
-          </div>
-      </div>
-  </div>
 {% endif %}
-
-
 </div>
-
 {% endfor %}
 </div>
     {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% if user.is_superuser %}
+    <br><br><br><br><br><br><br><br><br><br>
+    <div style="margin-right:0px;" class="uk-position-bottom" uk-grid>
+      <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan uk-width-1-4" href="#">کاتالوگ</a>
+      <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan uk-width-1-4" uk-toggle="target: #modal-delete{{product.pk}}">حدف</a>
+      <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large whiteC redC-text fHarmattan uk-width-1-4" href="{% url 'products:update' product.pk %}">ویرایش</a>
+      <a style="border-top:solid 4px #ff0a0a;font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan uk-width-1-4" href="#">مشخصات</a>
+    </div>
+    <div id="modal-delete{{product.pk}}" uk-modal>
+<div class="uk-modal-dialog uk-modal-body">
+<h2 class="uk-modal-title fHarmattan ">اطمینان در حذف؟</h2>
+<p class="fHarmattan">با حذف این محصول، تمامی مشخصات آن اعم از کاتالوگ و ریز مشخصات از دیتابیس حذف خواهد شد.</p>
+<p class="uk-text-right">
+  <button class="uk-button uk-button-large uk-modal-close fHarmattan" type="button">لغو</button>
+  <a style="font-size:20px;" class="uk-button uk-button-large redC whiteC-text fHarmattan " href="{% url 'products:delete' product.pk %}" >حدف</a>
+</p>
+</div>
+</div>
+    {% else %}
+    <br><br><br><br><br><br><br><br><br><br>
+
+{% endif %}

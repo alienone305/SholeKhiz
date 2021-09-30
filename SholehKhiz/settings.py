@@ -160,3 +160,9 @@ LOGOUT_REDIRECT_URL = 'home'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#NiazPardaz
+NIAZPARDAZ_USERNAME = 'radiator'
+NIAZPARDAZ_PASSWORD = '63555'
+NIAZPARDAZ_LINENUMBER = '5000209651'
