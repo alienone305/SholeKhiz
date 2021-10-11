@@ -1,6 +1,7 @@
 #CREATE A USER WITH SUDO GROUP
-adduser serveruser && adduser serveruser sudo
+adduser server_user && adduser server_user sudo
 sudo apt-get update && sudo apt-get upgrade -y
+sudo apt install curl -y
 curl https://easyinstall.citadel.org/install | bash
 # options: leave all options to default just change password - http port to 8080 and https port to 8443.
 # on domain dns add mx to both server ip and domain.ir and mail.domain.ir next add other dns properties to mail rank
@@ -13,7 +14,7 @@ info@tala-market.com - error404@tala-market.com - error500@tala-market.com - con
 
 
 
-#INSIDE USER serveruser:
+#INSIDE USER server_user:
 
 sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y software-properties-common
 sudo add-apt-repository ppa:deadsnakes/ppa
@@ -28,13 +29,13 @@ pip install virtualenv
 ##ADJUST POSTGRESQL
 
 sudo su - postgres
-createuser -P serveruser
+createuser -P server_user
 psql
-CREATE DATABASE maindb; ALTER ROLE serveruser SUPERUSER; GRANT ALL PRIVILEGES ON DATABASE maindb TO serveruser;
+CREATE DATABASE maindb; ALTER ROLE server_user SUPERUSER; GRANT ALL PRIVILEGES ON DATABASE maindb TO server_user;
 \q
 exit
 
-#INSIDE MAIN DIRECORY WHICH IS /home/serveruser
+#INSIDE MAIN DIRECORY WHICH IS /home/server_user
 
 python3.9 -m venv django_env && source django_env/bin/activate && sudo apt-get install libpq-dev python3-dev
 
@@ -43,24 +44,22 @@ cd django_env && sudo nano config.json
 ###########
 
 {
-  "ALLOWED_HOST1": "tala-market.com",
-  "ALLOWED_HOST2": "www.tala-market.com",
-  "SECRET_KEY": "django-insecure-(mh*%shhw=kfc-ykz+v=-b+42^4hg2ayw-p6ygghwe-_i&pa5q",
+  "ALLOWED_HOST1": "sholehkhiz.com",
+  "ALLOWED_HOST2": "www.sholehkhiz.com",
+  "ALLOWED_HOST3": "185.255.88.144",
+  "SECRET_KEY": "django-insecure-(x8-efeddkf2)30=^1ekb2707ag9!jhn*(4l(-zn0wb4u$f7xq",
   "DEBUG":"False",
   "DATABASE_NAME": "maindb",
-  "DATABASE_USER": "serveruser",
+  "DATABASE_USER": "server_user",
   "DATABASE_PASSWORD": "199271Raiden",
-  "KAVENEGAR_PHONE_NUMBER": "10008000300010",
-  "KAVENEGAR_API_KEY": "30383967456C38706753473546583443536233774E374E6E702B5832386C7648",
-  "EMAIL_USER": "info@tala-market.com",
+  "EMAIL_USER": "info@sholehkhiz.com",
   "EMAIL_PASSWORD": "199271Raiden"
 }
 
 ###########
 
-cd && git clone https://github.com/serveruser56/Jewelery.git SholehKhiz
 #office
-cd && git clone https://github.com/alienone305/jewlery.git SholehKhiz
+cd && git clone https://github.com/alienone305/SholeKhiz.git SholehKhiz
 
 #THEN INSIDE THERE:
 
@@ -71,7 +70,7 @@ pip install gunicorn psycopg2-binary
 #CHECK IF IT IS RUNNING CORRECTLY IN Main_Project
 gunicorn SholehKhiz.wsgi:application --bind 0.0.0.0:8001
 
-#THEN CD TO MAIN DIRECORY /home/serveruser
+#THEN CD TO MAIN DIRECORY /home/server_user
 
 cd && nano gunicorn_start.bash
 
@@ -80,10 +79,10 @@ ADD THESE LINES THERE
 #!/bin/bash
 
 NAME="SholehKhiz"                                    # Name of the application
-DJANGODIR=/home/serveruser/SholehKhiz               # Django project directory
-SOCKFILE=/home/serveruser/django_env/run/gunicorn.sock  # we will communicte using this unix socket
-USER=serveruser                                         # the user to run as
-GROUP=serveruser                                        # the group to run as
+DJANGODIR=/home/server_user/SholehKhiz               # Django project directory
+SOCKFILE=/home/server_user/django_env/run/gunicorn.sock  # we will communicte using this unix socket
+USER=server_user                                         # the user to run as
+GROUP=server_user                                        # the group to run as
 NUM_WORKERS=3                                       # how many worker processes should Gunicorn spawn
 DJANGO_SETTINGS_MODULE=SholehKhiz.settings      # which settings file should Django use
 DJANGO_WSGI_MODULE=SholehKhiz.wsgi              # WSGI module name
@@ -92,7 +91,7 @@ echo "Starting $NAME as `whoami`"
 # Activate the virtual environment
 
 cd $DJANGODIR
-source /home/serveruser/django_env/bin/activate
+source /home/server_user/django_env/bin/activate
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
@@ -126,16 +125,16 @@ ADD THESE LINES THERE
 #########################################################
 
 [program:SholehKhiz]
-command = /home/serveruser/gunicorn_start.bash                  ; Command to start app
-user = serveruser                                                ; User to run as
-stdout_logfile = /home/serveruser/logs/gunicorn_supervisor.log   ; Where to write log messages
+command = /home/server_user/gunicorn_start.bash                  ; Command to start app
+user = server_user                                                ; User to run as
+stdout_logfile = /home/server_user/logs/gunicorn_supervisor.log   ; Where to write log messages
 redirect_stderr = true                                       ; Save stderr in the same log
 environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8              ; Set UTF-8 as default encoding
 
 ###########################################################
 
-mkdir -p /home/serveruser/logs/
-touch /home/serveruser/logs/gunicorn_supervisor.log
+mkdir -p /home/server_user/logs/
+touch /home/server_user/logs/gunicorn_supervisor.log
 sudo systemctl restart supervisor
 sudo systemctl enable supervisor
 
@@ -152,7 +151,7 @@ upstream SholehKhiz_server {
   # fail_timeout=0 means we always retry an upstream even if it failed
   # to return a good HTTP response (in case the Unicorn master nukes a
   # single worker for timing out).
-  server unix:/home/serveruser/django_env/run/gunicorn.sock fail_timeout=0;
+  server unix:/home/server_user/django_env/run/gunicorn.sock fail_timeout=0;
 }
 
 server {
@@ -161,15 +160,15 @@ server {
     server_name  185.88.177.114 tala-market.com www.tala-market.com;
 
     client_max_body_size 4G;
-    access_log /home/serveruser/logs/nginx-access.log;
-    error_log /home/serveruser/logs/nginx-error.log;
+    access_log /home/server_user/logs/nginx-access.log;
+    error_log /home/server_user/logs/nginx-error.log;
 
     location /static/ {
-        alias   /home/serveruser/SholehKhiz/static/;
+        alias   /home/server_user/SholehKhiz/static/;
     }
 
     location /media/ {
-        alias   /home/serveruser/SholehKhiz/media/;
+        alias   /home/server_user/SholehKhiz/media/;
     }
 
     location / {
@@ -208,13 +207,13 @@ server {
 
     error_page 500 502 503 504 /custom_50x.html;
     location = /custom_50x.html {
-        root /home/serveruser/SholehKhiz/templates/nginx_error_pages/;
+        root /home/server_user/SholehKhiz/templates/nginx_error_pages/;
         internal;
         }
 
     error_page 404 /custom_404.html;
     location = /custom_404.html {
-        root /home/serveruser/SholehKhiz/templates/nginx_error_pages/;
+        root /home/server_user/SholehKhiz/templates/nginx_error_pages/;
         internal;
         }
     location /blog {
@@ -267,7 +266,7 @@ sudo service nginx start
 sudo cp -r SholehKhiz/media/ media/
 sudo rm -r SholehKhiz/
 
-cd && git clone https://github.com/serveruser56/Jewelery.git SholehKhiz
+cd && git clone https://github.com/server_user56/Jewelery.git SholehKhiz
 #office
 cd && git clone https://github.com/alienone305/jewlery.git SholehKhiz
 
@@ -295,8 +294,8 @@ sudo mysql_secure_installation
 sudo mysql
 
 CREATE DATABASE wordpress_db;
-CREATE USER 'serveruser'@'localhost' IDENTIFIED BY '199271Raiden';
-GRANT ALL PRIVILEGES ON wordpress_db.* to serveruser@'localhost';
+CREATE USER 'server_user'@'localhost' IDENTIFIED BY '199271Raiden';
+GRANT ALL PRIVILEGES ON wordpress_db.* to server_user@'localhost';
 FLUSH PRIVILEGES;
 exit
 
