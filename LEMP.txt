@@ -1,5 +1,5 @@
 #CREATE A USER WITH SUDO GROUP
-adduser amirfarsad && adduser amirfarsad sudo
+adduser serveruser && adduser serveruser sudo
 sudo apt-get update && sudo apt-get upgrade -y
 curl https://easyinstall.citadel.org/install | bash
 # options: leave all options to default just change password - http port to 8080 and https port to 8443.
@@ -13,7 +13,7 @@ info@tala-market.com - error404@tala-market.com - error500@tala-market.com - con
 
 
 
-#INSIDE USER amirfarsad:
+#INSIDE USER serveruser:
 
 sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y software-properties-common
 sudo add-apt-repository ppa:deadsnakes/ppa
@@ -28,13 +28,13 @@ pip install virtualenv
 ##ADJUST POSTGRESQL
 
 sudo su - postgres
-createuser -P amirfarsad
+createuser -P serveruser
 psql
-CREATE DATABASE maindb; ALTER ROLE amirfarsad SUPERUSER; GRANT ALL PRIVILEGES ON DATABASE maindb TO amirfarsad;
+CREATE DATABASE maindb; ALTER ROLE serveruser SUPERUSER; GRANT ALL PRIVILEGES ON DATABASE maindb TO serveruser;
 \q
 exit
 
-#INSIDE MAIN DIRECORY WHICH IS /home/amirfarsad
+#INSIDE MAIN DIRECORY WHICH IS /home/serveruser
 
 python3.9 -m venv django_env && source django_env/bin/activate && sudo apt-get install libpq-dev python3-dev
 
@@ -48,7 +48,7 @@ cd django_env && sudo nano config.json
   "SECRET_KEY": "django-insecure-(mh*%shhw=kfc-ykz+v=-b+42^4hg2ayw-p6ygghwe-_i&pa5q",
   "DEBUG":"False",
   "DATABASE_NAME": "maindb",
-  "DATABASE_USER": "amirfarsad",
+  "DATABASE_USER": "serveruser",
   "DATABASE_PASSWORD": "199271Raiden",
   "KAVENEGAR_PHONE_NUMBER": "10008000300010",
   "KAVENEGAR_API_KEY": "30383967456C38706753473546583443536233774E374E6E702B5832386C7648",
@@ -58,20 +58,20 @@ cd django_env && sudo nano config.json
 
 ###########
 
-cd && git clone https://github.com/AmirFarsad56/Jewelery.git JewleryStore
+cd && git clone https://github.com/serveruser56/Jewelery.git SholehKhiz
 #office
-cd && git clone https://github.com/alienone305/jewlery.git JewleryStore
+cd && git clone https://github.com/alienone305/jewlery.git SholehKhiz
 
 #THEN INSIDE THERE:
 
-cd JewleryStore && pip install -r requirements.txt && pip install django[argon2] && python manage.py collectstatic && python manage.py makemigrations && python manage.py migrate
+cd SholehKhiz && pip install -r requirements.txt && pip install django[argon2] && python manage.py collectstatic && python manage.py makemigrations && python manage.py migrate
 
 pip install gunicorn psycopg2-binary
 
 #CHECK IF IT IS RUNNING CORRECTLY IN Main_Project
-gunicorn JewleryStore.wsgi:application --bind 0.0.0.0:8001
+gunicorn SholehKhiz.wsgi:application --bind 0.0.0.0:8001
 
-#THEN CD TO MAIN DIRECORY /home/amirfarsad
+#THEN CD TO MAIN DIRECORY /home/serveruser
 
 cd && nano gunicorn_start.bash
 
@@ -79,20 +79,20 @@ ADD THESE LINES THERE
 ################################
 #!/bin/bash
 
-NAME="JewleryStore"                                    # Name of the application
-DJANGODIR=/home/amirfarsad/JewleryStore               # Django project directory
-SOCKFILE=/home/amirfarsad/django_env/run/gunicorn.sock  # we will communicte using this unix socket
-USER=amirfarsad                                         # the user to run as
-GROUP=amirfarsad                                        # the group to run as
+NAME="SholehKhiz"                                    # Name of the application
+DJANGODIR=/home/serveruser/SholehKhiz               # Django project directory
+SOCKFILE=/home/serveruser/django_env/run/gunicorn.sock  # we will communicte using this unix socket
+USER=serveruser                                         # the user to run as
+GROUP=serveruser                                        # the group to run as
 NUM_WORKERS=3                                       # how many worker processes should Gunicorn spawn
-DJANGO_SETTINGS_MODULE=JewleryStore.settings      # which settings file should Django use
-DJANGO_WSGI_MODULE=JewleryStore.wsgi              # WSGI module name
+DJANGO_SETTINGS_MODULE=SholehKhiz.settings      # which settings file should Django use
+DJANGO_WSGI_MODULE=SholehKhiz.wsgi              # WSGI module name
 echo "Starting $NAME as `whoami`"
 
 # Activate the virtual environment
 
 cd $DJANGODIR
-source /home/amirfarsad/django_env/bin/activate
+source /home/serveruser/django_env/bin/activate
 export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
@@ -114,45 +114,45 @@ exec gunicorn ${DJANGO_WSGI_MODULE}:application \
 
 #########################################################
 
-cd JewleryStore/ && sudo rm -r JewleryStore/settings.py && sudo mv JewleryStore/settings0.py JewleryStore/settings.py
+cd SholehKhiz/ && sudo rm -r SholehKhiz/settings.py && sudo mv SholehKhiz/settings0.py SholehKhiz/settings.py
 
 sudo chmod u+x gunicorn_start.bash
 
 CHECK IT BY RUNNING:
 ./gunicorn_start.bash
-sudo nano /etc/supervisor/conf.d/JewleryStore.conf
+sudo nano /etc/supervisor/conf.d/SholehKhiz.conf
 
 ADD THESE LINES THERE
 #########################################################
 
-[program:JewleryStore]
-command = /home/amirfarsad/gunicorn_start.bash                  ; Command to start app
-user = amirfarsad                                                ; User to run as
-stdout_logfile = /home/amirfarsad/logs/gunicorn_supervisor.log   ; Where to write log messages
+[program:SholehKhiz]
+command = /home/serveruser/gunicorn_start.bash                  ; Command to start app
+user = serveruser                                                ; User to run as
+stdout_logfile = /home/serveruser/logs/gunicorn_supervisor.log   ; Where to write log messages
 redirect_stderr = true                                       ; Save stderr in the same log
 environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8              ; Set UTF-8 as default encoding
 
 ###########################################################
 
-mkdir -p /home/amirfarsad/logs/
-touch /home/amirfarsad/logs/gunicorn_supervisor.log
+mkdir -p /home/serveruser/logs/
+touch /home/serveruser/logs/gunicorn_supervisor.log
 sudo systemctl restart supervisor
 sudo systemctl enable supervisor
 
 CHECK SUPERVISOR BY RUNNING:
-sudo supervisorctl status JewleryStore
+sudo supervisorctl status SholehKhiz
 
-sudo nano /etc/nginx/sites-available/JewleryStore.conf
+sudo nano /etc/nginx/sites-available/SholehKhiz.conf
 
 
 ADD THESE LINES THERE
 ########################################################
 
-upstream JewleryStore_server {
+upstream SholehKhiz_server {
   # fail_timeout=0 means we always retry an upstream even if it failed
   # to return a good HTTP response (in case the Unicorn master nukes a
   # single worker for timing out).
-  server unix:/home/amirfarsad/django_env/run/gunicorn.sock fail_timeout=0;
+  server unix:/home/serveruser/django_env/run/gunicorn.sock fail_timeout=0;
 }
 
 server {
@@ -161,15 +161,15 @@ server {
     server_name  185.88.177.114 tala-market.com www.tala-market.com;
 
     client_max_body_size 4G;
-    access_log /home/amirfarsad/logs/nginx-access.log;
-    error_log /home/amirfarsad/logs/nginx-error.log;
+    access_log /home/serveruser/logs/nginx-access.log;
+    error_log /home/serveruser/logs/nginx-error.log;
 
     location /static/ {
-        alias   /home/amirfarsad/JewleryStore/static/;
+        alias   /home/serveruser/SholehKhiz/static/;
     }
 
     location /media/ {
-        alias   /home/amirfarsad/JewleryStore/media/;
+        alias   /home/serveruser/SholehKhiz/media/;
     }
 
     location / {
@@ -201,20 +201,20 @@ server {
         # Try to serve static files from nginx, no point in making an
         # *application* server like Unicorn/Rainbows! serve static files.
         if (!-f $request_filename) {
-            proxy_pass http://JewleryStore_server;
+            proxy_pass http://SholehKhiz_server;
             break;
         }
     }
 
     error_page 500 502 503 504 /custom_50x.html;
     location = /custom_50x.html {
-        root /home/amirfarsad/JewleryStore/templates/nginx_error_pages/;
+        root /home/serveruser/SholehKhiz/templates/nginx_error_pages/;
         internal;
         }
 
     error_page 404 /custom_404.html;
     location = /custom_404.html {
-        root /home/amirfarsad/JewleryStore/templates/nginx_error_pages/;
+        root /home/serveruser/SholehKhiz/templates/nginx_error_pages/;
         internal;
         }
     location /blog {
@@ -238,7 +238,7 @@ server {
 
 ########################################################################
 
-sudo ln -s /etc/nginx/sites-available/JewleryStore.conf /etc/nginx/sites-enabled/JewleryStore.conf
+sudo ln -s /etc/nginx/sites-available/SholehKhiz.conf /etc/nginx/sites-enabled/SholehKhiz.conf
 
 sudo service nginx start && sudo service nginx restart
 
@@ -252,29 +252,29 @@ sudo certbot renew --dry-run
 
 ########################################################## Site reload stop start
 TO RELOAD THE SIDE IF ANY CHANGES HAVE BEEN MADE:
-sudo supervisorctl restart JewleryStore
+sudo supervisorctl restart SholehKhiz
 sudo service nginx restart
 
 AND TO STOP IT:
-sudo supervisorctl stop JewleryStore
+sudo supervisorctl stop SholehKhiz
 sudo service nginx stop
 
 AND TO START IT AGAIN:
-sudo supervisorctl start JewleryStore
+sudo supervisorctl start SholehKhiz
 sudo service nginx start
 ######################################
 ####################################################################### Updating
-sudo cp -r JewleryStore/media/ media/
-sudo rm -r JewleryStore/
+sudo cp -r SholehKhiz/media/ media/
+sudo rm -r SholehKhiz/
 
-cd && git clone https://github.com/AmirFarsad56/Jewelery.git JewleryStore
+cd && git clone https://github.com/serveruser56/Jewelery.git SholehKhiz
 #office
-cd && git clone https://github.com/alienone305/jewlery.git JewleryStore
+cd && git clone https://github.com/alienone305/jewlery.git SholehKhiz
 
-cd JewleryStore/ && sudo rm -r JewleryStore/settings.py && sudo mv JewleryStore/settings0.py JewleryStore/settings.py
-cd && sudo cp -r media/ JewleryStore/media/
+cd SholehKhiz/ && sudo rm -r SholehKhiz/settings.py && sudo mv SholehKhiz/settings0.py SholehKhiz/settings.py
+cd && sudo cp -r media/ SholehKhiz/media/
 
-sudo supervisorctl restart JewleryStore
+sudo supervisorctl restart SholehKhiz
 sudo service nginx restart
 #######################################
 
@@ -295,8 +295,8 @@ sudo mysql_secure_installation
 sudo mysql
 
 CREATE DATABASE wordpress_db;
-CREATE USER 'amirfarsad'@'localhost' IDENTIFIED BY '199271Raiden';
-GRANT ALL PRIVILEGES ON wordpress_db.* to amirfarsad@'localhost';
+CREATE USER 'serveruser'@'localhost' IDENTIFIED BY '199271Raiden';
+GRANT ALL PRIVILEGES ON wordpress_db.* to serveruser@'localhost';
 FLUSH PRIVILEGES;
 exit
 
