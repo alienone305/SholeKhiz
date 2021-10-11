@@ -265,9 +265,7 @@ sudo service nginx start
 sudo cp -r SholehKhiz/media/ media/
 sudo rm -r SholehKhiz/
 
-cd && git clone https://github.com/server_user56/Jewelery.git SholehKhiz
-#office
-cd && git clone https://github.com/alienone305/jewlery.git SholehKhiz
+cd && git clone https://github.com/alienone305/SholeKhiz.git SholehKhiz
 
 cd SholehKhiz/ && sudo rm -r SholehKhiz/settings.py && sudo mv SholehKhiz/settings0.py SholehKhiz/settings.py
 cd && sudo cp -r media/ SholehKhiz/media/
