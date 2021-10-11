@@ -7,6 +7,9 @@
 .fLalezar {
   font-family: 'Lalezar', cursive;
 }
+.fLateef {
+  font-family: 'Lateef', cursive;
+}
 .goldC{
   background-color: #d4af37;
 }
@@ -30,4 +33,16 @@
 }
 .darkgreyC-text{
   color: #262626;
+}
+.redC{
+  background-color: #ff0a0a;
+}
+.redC-text{
+  color: #ff0a0a;
+}
+.blueC{
+  background-color: #0a50ff;
+}
+.blueC-text{
+  color: #0a50ff;
 }

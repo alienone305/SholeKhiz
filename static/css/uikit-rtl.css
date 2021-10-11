@@ -5570,7 +5570,7 @@ ul.uk-nav-sub {
 /* Divider modifier
  ========================================================================== */
 /*
- * Set gutter 
+ * Set gutter
  */
 .uk-subnav-divider {
   margin-right: -41px;
@@ -7686,6 +7686,8 @@ iframe.uk-cover {
   background-attachment: fixed;
   /* 1 */
   backface-visibility: hidden;
+  display: block;
+
 }
 /*
  * Exclude touch devices because `fixed` doesn't work on iOS and Android
@@ -7693,6 +7695,7 @@ iframe.uk-cover {
 @media (pointer: coarse) {
   .uk-background-fixed {
     background-attachment: scroll;
+
   }
 }
 /* Image

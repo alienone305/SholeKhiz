@@ -1,0 +1,312 @@
+#CREATE A USER WITH SUDO GROUP
+adduser amirfarsad && adduser amirfarsad sudo
+sudo apt-get update && sudo apt-get upgrade -y
+curl https://easyinstall.citadel.org/install | bash
+# options: leave all options to default just change password - http port to 8080 and https port to 8443.
+# on domain dns add mx to both server ip and domain.ir and mail.domain.ir next add other dns properties to mail rank
+
+#### MAYBE (CHANGE DOMAIN NAME IN ADMINSTRATION ) if anything wrong about receiving mails happens undo this
+#THEN CREATE THESE REQUIRED EMAILS with permission to send internet mails
+info@tala-market.com - error404@tala-market.com - error500@tala-market.com - contactus@tala-market.com - sportclubcontact@tala-market.com
+######## Important: In Admin Panel Head To Adminstration -> Edit Site-Wide Configuration -> Access ->
+######## Check Disable Self-Service User Account Creation; Hint: Do Not Select Both!
+
+
+
+#INSIDE USER amirfarsad:
+
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.9 -y
+sudo apt-get install python3.8-venv python3.9-venv -y
+
+sudo apt-get install -y libgeos-dev binutils libproj-dev gdal-bin libgdal-dev python3-gdal build-essential libpq-dev libssl-dev openssl libffi-dev zlib1g-dev python3-pip
+sudo apt-get install -y git supervisor nginx postgresql postgis
+
+pip install virtualenv
+
+##ADJUST POSTGRESQL
+
+sudo su - postgres
+createuser -P amirfarsad
+psql
+CREATE DATABASE maindb; ALTER ROLE amirfarsad SUPERUSER; GRANT ALL PRIVILEGES ON DATABASE maindb TO amirfarsad;
+\q
+exit
+
+#INSIDE MAIN DIRECORY WHICH IS /home/amirfarsad
+
+python3.9 -m venv django_env && source django_env/bin/activate && sudo apt-get install libpq-dev python3-dev
+
+cd django_env && sudo nano config.json
+
+###########
+
+{
+  "ALLOWED_HOST1": "tala-market.com",
+  "ALLOWED_HOST2": "www.tala-market.com",
+  "SECRET_KEY": "django-insecure-(mh*%shhw=kfc-ykz+v=-b+42^4hg2ayw-p6ygghwe-_i&pa5q",
+  "DEBUG":"False",
+  "DATABASE_NAME": "maindb",
+  "DATABASE_USER": "amirfarsad",
+  "DATABASE_PASSWORD": "199271Raiden",
+  "KAVENEGAR_PHONE_NUMBER": "10008000300010",
+  "KAVENEGAR_API_KEY": "30383967456C38706753473546583443536233774E374E6E702B5832386C7648",
+  "EMAIL_USER": "info@tala-market.com",
+  "EMAIL_PASSWORD": "199271Raiden"
+}
+
+###########
+
+cd && git clone https://github.com/AmirFarsad56/Jewelery.git JewleryStore
+#office
+cd && git clone https://github.com/alienone305/jewlery.git JewleryStore
+
+#THEN INSIDE THERE:
+
+cd JewleryStore && pip install -r requirements.txt && pip install django[argon2] && python manage.py collectstatic && python manage.py makemigrations && python manage.py migrate
+
+pip install gunicorn psycopg2-binary
+
+#CHECK IF IT IS RUNNING CORRECTLY IN Main_Project
+gunicorn JewleryStore.wsgi:application --bind 0.0.0.0:8001
+
+#THEN CD TO MAIN DIRECORY /home/amirfarsad
+
+cd && nano gunicorn_start.bash
+
+ADD THESE LINES THERE
+################################
+#!/bin/bash
+
+NAME="JewleryStore"                                    # Name of the application
+DJANGODIR=/home/amirfarsad/JewleryStore               # Django project directory
+SOCKFILE=/home/amirfarsad/django_env/run/gunicorn.sock  # we will communicte using this unix socket
+USER=amirfarsad                                         # the user to run as
+GROUP=amirfarsad                                        # the group to run as
+NUM_WORKERS=3                                       # how many worker processes should Gunicorn spawn
+DJANGO_SETTINGS_MODULE=JewleryStore.settings      # which settings file should Django use
+DJANGO_WSGI_MODULE=JewleryStore.wsgi              # WSGI module name
+echo "Starting $NAME as `whoami`"
+
+# Activate the virtual environment
+
+cd $DJANGODIR
+source /home/amirfarsad/django_env/bin/activate
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+# Create the run directory if it doesn't exist
+
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+# Start your Django Unicorn
+# Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
+
+exec gunicorn ${DJANGO_WSGI_MODULE}:application \
+  --name $NAME \
+  --workers $NUM_WORKERS \
+  --user=$USER --group=$GROUP \
+  --bind=unix:$SOCKFILE \
+  --log-level=debug \
+  --log-file=-
+
+#########################################################
+
+cd JewleryStore/ && sudo rm -r JewleryStore/settings.py && sudo mv JewleryStore/settings0.py JewleryStore/settings.py
+
+sudo chmod u+x gunicorn_start.bash
+
+CHECK IT BY RUNNING:
+./gunicorn_start.bash
+sudo nano /etc/supervisor/conf.d/JewleryStore.conf
+
+ADD THESE LINES THERE
+#########################################################
+
+[program:JewleryStore]
+command = /home/amirfarsad/gunicorn_start.bash                  ; Command to start app
+user = amirfarsad                                                ; User to run as
+stdout_logfile = /home/amirfarsad/logs/gunicorn_supervisor.log   ; Where to write log messages
+redirect_stderr = true                                       ; Save stderr in the same log
+environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8              ; Set UTF-8 as default encoding
+
+###########################################################
+
+mkdir -p /home/amirfarsad/logs/
+touch /home/amirfarsad/logs/gunicorn_supervisor.log
+sudo systemctl restart supervisor
+sudo systemctl enable supervisor
+
+CHECK SUPERVISOR BY RUNNING:
+sudo supervisorctl status JewleryStore
+
+sudo nano /etc/nginx/sites-available/JewleryStore.conf
+
+
+ADD THESE LINES THERE
+########################################################
+
+upstream JewleryStore_server {
+  # fail_timeout=0 means we always retry an upstream even if it failed
+  # to return a good HTTP response (in case the Unicorn master nukes a
+  # single worker for timing out).
+  server unix:/home/amirfarsad/django_env/run/gunicorn.sock fail_timeout=0;
+}
+
+server {
+
+    listen   80;
+    server_name  185.88.177.114 tala-market.com www.tala-market.com;
+
+    client_max_body_size 4G;
+    access_log /home/amirfarsad/logs/nginx-access.log;
+    error_log /home/amirfarsad/logs/nginx-error.log;
+
+    location /static/ {
+        alias   /home/amirfarsad/JewleryStore/static/;
+    }
+
+    location /media/ {
+        alias   /home/amirfarsad/JewleryStore/media/;
+    }
+
+    location / {
+
+        # an HTTP header important enough to have its own Wikipedia entry:
+        #   http://en.wikipedia.org/wiki/X-Forwarded-For
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+
+        # enable this if and only if you use HTTPS, this helps Rack
+        # set the proper protocol for doing redirects:
+        # proxy_set_header X-Forwarded-Proto https;
+
+        # pass the Host: header from the client right along so redirects
+        # can be set properly within the Rack application
+        proxy_set_header Host $http_host;
+
+        # we don't want nginx trying to do something clever with
+        # redirects, we set the Host: header above already.
+        proxy_redirect off;
+
+        # set "proxy_buffering off" *only* for Rainbows! when doing
+        # Comet/long-poll stuff.  It's also safe to set if you're
+        # using only serving fast clients with Unicorn + nginx.
+        # Otherwise you _want_ nginx to buffer responses to slow
+        # clients, really.
+        # proxy_buffering off;
+
+        # Try to serve static files from nginx, no point in making an
+        # *application* server like Unicorn/Rainbows! serve static files.
+        if (!-f $request_filename) {
+            proxy_pass http://JewleryStore_server;
+            break;
+        }
+    }
+
+    error_page 500 502 503 504 /custom_50x.html;
+    location = /custom_50x.html {
+        root /home/amirfarsad/JewleryStore/templates/nginx_error_pages/;
+        internal;
+        }
+
+    error_page 404 /custom_404.html;
+    location = /custom_404.html {
+        root /home/amirfarsad/JewleryStore/templates/nginx_error_pages/;
+        internal;
+        }
+    location /blog {
+       alias /var/www/tala-market.com;
+       try_files $uri $uri/ @blog;
+       index index.php index.html index.htm index.nginx-debian.html;
+
+       location ~ \.php$ {
+         try_files $uri =404;
+         fastcgi_pass 127.0.0.1:9000;
+         fastcgi_index index.php;
+         fastcgi_param SCRIPT_FILENAME $request_filename;
+         include fastcgi_params;
+       }
+    }
+    location @blog {
+      rewrite /blog/(.*)$ /blog/index.php?/$1 last;
+    }
+
+}
+
+########################################################################
+
+sudo ln -s /etc/nginx/sites-available/JewleryStore.conf /etc/nginx/sites-enabled/JewleryStore.conf
+
+sudo service nginx start && sudo service nginx restart
+
+############## applying ssl certificate: (documentation on https://certbot.eff.org/)
+sudo snap install core; sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo certbot --nginx
+sudo certbot certonly --nginx
+sudo certbot renew --dry-run
+
+########################################################## Site reload stop start
+TO RELOAD THE SIDE IF ANY CHANGES HAVE BEEN MADE:
+sudo supervisorctl restart JewleryStore
+sudo service nginx restart
+
+AND TO STOP IT:
+sudo supervisorctl stop JewleryStore
+sudo service nginx stop
+
+AND TO START IT AGAIN:
+sudo supervisorctl start JewleryStore
+sudo service nginx start
+######################################
+####################################################################### Updating
+sudo cp -r JewleryStore/media/ media/
+sudo rm -r JewleryStore/
+
+cd && git clone https://github.com/AmirFarsad56/Jewelery.git JewleryStore
+#office
+cd && git clone https://github.com/alienone305/jewlery.git JewleryStore
+
+cd JewleryStore/ && sudo rm -r JewleryStore/settings.py && sudo mv JewleryStore/settings0.py JewleryStore/settings.py
+cd && sudo cp -r media/ JewleryStore/media/
+
+sudo supervisorctl restart JewleryStore
+sudo service nginx restart
+#######################################
+
+sudo apt update
+sudo add-apt-repository ppa:ondrej/php
+sudo apt install nginx mariadb-server mariadb-client php7.3-fpm php7.3-mysql
+sudo nano /etc/php/7.3/fpm/pool.d/www.conf
+############# Then make these changes there: #### ctrl+w can be used for searching #######
+
+listen = /run/php/php7.3-fpm.sock ==> ;listen = /run/php/php7.3-fpm.sock
+;##ADD THIS ==>
+listen = 127.0.0.1:9000
+
+##############################################################################
+
+sudo mysql_secure_installation
+# yes no no no yes
+sudo mysql
+
+CREATE DATABASE wordpress_db;
+CREATE USER 'amirfarsad'@'localhost' IDENTIFIED BY '199271Raiden';
+GRANT ALL PRIVILEGES ON wordpress_db.* to amirfarsad@'localhost';
+FLUSH PRIVILEGES;
+exit
+
+
+sudo git clone https://github.com/alienone306/wp.git /var/www/tala-market.com
+sudo rm -r /var/www/tala-market.com/wp-config.php
+############### or
+wget http://wordpress.org/latest.tar.gz && tar xzf latest.tar.gz
+sudo mv wordpress /var/www/tala-market.com
+
+sudo chmod -R 755 /var/www/tala-market.com && sudo chown www-data:www-data /var/www/tala-market.com/ -R
+
+sudo service nginx start && sudo service nginx restart && sudo service php7.3-fpm restart
