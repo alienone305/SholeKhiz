@@ -8,7 +8,7 @@ curl https://easyinstall.citadel.org/install | bash
 
 #### MAYBE (CHANGE DOMAIN NAME IN ADMINSTRATION ) if anything wrong about receiving mails happens undo this
 #THEN CREATE THESE REQUIRED EMAILS with permission to send internet mails
-info@tala-market.com - error404@tala-market.com - error500@tala-market.com - contactus@tala-market.com - sportclubcontact@tala-market.com
+info@sholehkhiz.com - error404@sholehkhiz.com - error500@sholehkhiz.com - contactus@sholehkhiz.com - sportclubcontact@sholehkhiz.com
 ######## Important: In Admin Panel Head To Adminstration -> Edit Site-Wide Configuration -> Access ->
 ######## Check Disable Self-Service User Account Creation; Hint: Do Not Select Both!
 
@@ -63,10 +63,9 @@ cd && git clone https://github.com/alienone305/SholeKhiz.git SholehKhiz
 
 #THEN INSIDE THERE:
 
-cd SholehKhiz && pip install -r requirements.txt && pip install django[argon2] && python manage.py collectstatic && python manage.py makemigrations && python manage.py migrate
-
-pip install gunicorn psycopg2-binary
-
+cd /home/server_user/SholehKhiz && pip install -r requirements.txt && pip install django[argon2]
+python manage.py migrate && pip install gunicorn
+python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic
 #CHECK IF IT IS RUNNING CORRECTLY IN Main_Project
 gunicorn SholehKhiz.wsgi:application --bind 0.0.0.0:8001
 
@@ -115,7 +114,7 @@ exec gunicorn ${DJANGO_WSGI_MODULE}:application \
 
 cd SholehKhiz/ && sudo rm -r SholehKhiz/settings.py && sudo mv SholehKhiz/settings0.py SholehKhiz/settings.py
 
-sudo chmod u+x gunicorn_start.bash
+cd && sudo chmod u+x gunicorn_start.bash
 
 CHECK IT BY RUNNING:
 ./gunicorn_start.bash
@@ -157,7 +156,7 @@ upstream SholehKhiz_server {
 server {
 
     listen   80;
-    server_name  185.88.177.114 tala-market.com www.tala-market.com;
+    server_name  185.255.88.144 sholehkhiz.com www.sholehkhiz.com;
 
     client_max_body_size 4G;
     access_log /home/server_user/logs/nginx-access.log;
@@ -217,7 +216,7 @@ server {
         internal;
         }
     location /blog {
-       alias /var/www/tala-market.com;
+       alias /var/www/sholehkhiz.com;
        try_files $uri $uri/ @blog;
        index index.php index.html index.htm index.nginx-debian.html;
 
@@ -277,7 +276,7 @@ sudo supervisorctl restart SholehKhiz
 sudo service nginx restart
 #######################################
 
-sudo apt update
+cd && sudo apt update
 sudo add-apt-repository ppa:ondrej/php
 sudo apt install nginx mariadb-server mariadb-client php7.3-fpm php7.3-mysql
 sudo nano /etc/php/7.3/fpm/pool.d/www.conf
@@ -300,12 +299,12 @@ FLUSH PRIVILEGES;
 exit
 
 
-sudo git clone https://github.com/alienone306/wp.git /var/www/tala-market.com
-sudo rm -r /var/www/tala-market.com/wp-config.php
+sudo git clone https://github.com/alienone306/wp.git /var/www/sholehkhiz.com
+sudo rm -r /var/www/sholehkhiz.com/wp-config.php
 ############### or
 wget http://wordpress.org/latest.tar.gz && tar xzf latest.tar.gz
-sudo mv wordpress /var/www/tala-market.com
+sudo mv wordpress /var/www/sholehkhiz.com
 
-sudo chmod -R 755 /var/www/tala-market.com && sudo chown www-data:www-data /var/www/tala-market.com/ -R
+sudo chmod -R 755 /var/www/sholehkhiz.com && sudo chown www-data:www-data /var/www/sholehkhiz.com/ -R
 
 sudo service nginx start && sudo service nginx restart && sudo service php7.3-fpm restart
