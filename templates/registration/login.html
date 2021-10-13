@@ -37,12 +37,16 @@
       </div>
 
 
+      {% if form.errors %}
+      <div class="uk-width-1-1 fHarmattan"><p>
+      خطایی رخ داد.
+      لطفا فیلد هارا دوباره با دقت پر کنید.<br>
+      در صورت تداوم خطا مشکل را به پشتیبانان سایت اطلاع دهید.<br>
 
-              {% if form.errors %}
-                  <div class="uk-width-1-1">
-              <p  class="fHarmattan">نام کاربری یا رمز عبور اشتباه است</p>
-              </div>
-              {% endif %}
+      {{form.errors}}</p>
+    </div>
+      {% endif %}
+
 
       </div>
       <br>
@@ -60,20 +64,20 @@
 <div class="uk-grid-match uk-text-center" uk-grid>
 
 
-  <div class="uk-width-expand" style=" width:43%; border-top: solid white 1px;">
+  <div class="uk-width-expand" style=" border-top: solid white 1px;">
 
   </div>
   <div class="uk-align-center uk-width-1-5" style="margin-top:-20px;padding-left:30px;width:105px;" >
 <img  src="/media/Logo/fingerprint.png">
   </div>
-  <div class="uk-width-expand" style="margin-left:-30px; width:43%; border-top: solid white 1px;" >
+  <div class="uk-width-expand" style=" border-top: solid white 1px;" >
 
   </div>
 </div>
 
 <div class="uk-text-center">
-  <h3 class="fHarmattan whiteC-text">ثبت نام نکرده اید؟</h3>
-    <a class="uk-button uk-button-large redC-text whiteC fHarmattan uk-text-large" href="{% url 'commonuser:signup' %}">عضویت</a>
+  <h3 style="margin-left:30px;" class="fHarmattan whiteC-text">ثبت نام نکرده اید؟</h3>
+    <a style="margin-left:30px;" class="uk-button uk-button-large redC-text whiteC fHarmattan uk-text-large" href="{% url 'commonuser:signup' %}">عضویت</a>
   </div>
 <br><br>
 {% endblock %}

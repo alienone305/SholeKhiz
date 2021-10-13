@@ -29,7 +29,8 @@ class ApplicationModel(models.Model):
     computer_mastery = models.CharField(max_length = 264, blank = True, null = True)
     job_attendance = models.CharField(max_length = 264, blank = True, null = True)
     descriprion = models.TextField(null = True, blank = True)
-    resome = models.FileField(upload_to='media/resome/',null = True, blank = True)
+    resome = models.FileField(upload_to='resome/',null = True, blank = True, default = r'cataloges/default/default.jpeg')
+
 
 
 class DelegationRequestModel(models.Model):

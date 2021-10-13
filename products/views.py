@@ -37,8 +37,10 @@ def CreateProductView(request):
 
              if 'picture' in request.FILES:
                 product.picture = request.FILES['picture']
+             if 'cataloge' in request.FILES:
+                product.cataloge = request.FILES['cataloge']
              product.save()
-             return HttpResponseRedirect(reverse('home'))
+             return HttpResponseRedirect(reverse('account:superuserdashboard'))
         else:
             print(products_form.errors)
     else:
@@ -69,8 +71,24 @@ def ProductsUpdateView(request,pk):
     product_update_form = ProductsForm(request.POST or None, instance = product)
     if product_update_form.is_valid():
         product_update_form.save()
+        if 'type' in request.POST:
+            type = request.POST['type']
+        else:
+            type = False
+        if type == "1":
+            product.is_radiator = True
+        if type == "2":
+            product.is_towerdryer = True
+        if type == "3":
+            product.is_package = True
+        if type == "4":
+            product.is_waterheater = True
+
+
         if 'picture' in request.FILES:
            product.picture = request.FILES['picture']
+        if 'cataloge' in request.FILES:
+           product.cataloge = request.FILES['cataloge']
         product.save()
         return HttpResponseRedirect(reverse('products:listsuperuser'))
     return render(request,'products/productupdate.html',

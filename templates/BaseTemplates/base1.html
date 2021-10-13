@@ -6,8 +6,6 @@
     {% endblock %}
     {% load static %}
     <!DOCTYPE html>
-    <html lang="en" dir="ltr" style="overflow-x: hidden;">
-      <head>
         <meta charset="utf-8">
         <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +19,7 @@
         <script src="{% static 'js/uikit.min.js' %}" ></script>
         <script src="{% static 'js/uikit-icons.min.js' %}" ></script>
       </head>
-      <body style="background-color: #ff0a0a;overflow-x: hidden;" class="redC">
+      <body style="background-color: #ff0a0a;" class="redC">
         <header>
             <!-- Main Navbar -->
             <nav class="uk-navbar-container uk-margin" style="position: fixed;right: 0;left: 0;top: 0;z-index: 1030;box-shadow: 0 15px 17px rgba(0, 0,0, 0.18);" uk-navbar>
@@ -51,7 +49,7 @@
 </li>
 
       <li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="{% url 'gallery:gallery' %}">گالری</a></li>
-<li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="{% url 'company:about-us' %}">درباره ما</a></li>
+<li><a style="color:#ff0a0a; font-family: 'Harmattan', sans-serif; font-size:21px;" class=" " href="https://sholehkhiz.com/blog/">وبلاگ</a></li>
     </ul>
           <a href="#" class="uk-navbar-toggle uk-hidden@m redC-text" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
 </div></div>
@@ -151,12 +149,12 @@
       {% endif %}
 <a href="{% url 'commonuser:signup' %}" class="redC-text">عضویت</a><br>
 <a href="{% url 'delegations:publiclist' %}" class="redC-text">نمایندگی ها</a><br>
-<a href="#" class="redC-text">وبلاگ</a><br>
+<a href="https://sholehkhiz.com/blog/" class="redC-text">وبلاگ</a><br>
 <a href="{% url 'home' %}" class="redC-text">صفحه اصلی</a><br>
   </div>
   <div class="uk-text-center">
     <a href="#" class="redC-text"> <img width="35" src="/media/Logo/telegram.png" alt=""></a><br>
-    <a href="#" class="redC-text"><img width="35" src="/media/Logo/instagram.png" alt=""></a><br>
+    <a href="https://www.instagram.com/sholehkhizazar/" class="redC-text"><img width="35" src="/media/Logo/instagram.png" alt=""></a><br>
 
   </div>
 </div>

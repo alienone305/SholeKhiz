@@ -34,7 +34,6 @@ def OrderingView(request, pk):
              order.product = product
              order.save()
 
-             #response = api.sms_send(params)
              return HttpResponseRedirect(reverse('home'))
         else:
             print(ordering_form.errors)

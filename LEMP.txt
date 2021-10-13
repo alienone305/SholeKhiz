@@ -1,4 +1,7 @@
 #CREATE A USER WITH SUDO GROUP
+sudo nano /etc/hostname
+##### change to sholehkhiz.com
+sudo reboot
 adduser server_user && adduser server_user sudo
 sudo apt-get update && sudo apt-get upgrade -y
 sudo apt install curl -y

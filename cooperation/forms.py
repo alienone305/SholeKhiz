@@ -76,7 +76,7 @@ class ApplicationForm(forms.ModelForm):
             'computer_mastery': forms.TextInput(attrs={'class':'uk-input fHarmattan redC-text','placeholder':'میزان تسلط بر کامپیوتر'},),
             'job_attendance': forms.Textarea(attrs={'class':'uk-textarea fHarmattan','rows':'4','placeholder':'سوابق کاری'},),
             'descriprion': forms.Textarea(attrs={'class':'uk-textarea fHarmattan','rows':'4','placeholder':'توضیحات دیگر'},),
-            'resome': forms.FileInput(attrs={'class':'fHarmattan','id':'files','help_text':'asd'},),
+            'resome': forms.FileInput(attrs={'class':'fHarmattan','id':'resome','help_text':'رزومه'},),
 
         }
 

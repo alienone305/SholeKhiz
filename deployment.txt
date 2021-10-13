@@ -1,10 +1,5 @@
 git push -u sholekhiz sholekhiz
 
 Recaptcha for pages like contact us or cooperation forms
-check all reverse(redirect) routes
-change all form errors to persian
-add blog and social account url to footer and contact us
-add cataloge and detail for products model and checks its updateproduct form
+add social account url to footer and contact us
 pagination for certain pages
-fix product cataloge urls
-check resome and cataloge input in forms

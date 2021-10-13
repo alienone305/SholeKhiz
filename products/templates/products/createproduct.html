@@ -32,14 +32,22 @@
       <div class="uk-width-1-2@m">عکس
       {{products_form.picture}}
       </div>
+      <div class="uk-width-1-2@m">کاتالوگ
+      {{products_form.cataloge}}
+      </div>
       <div class="uk-width-1">
       {{products_form.description}}
       </div>
-      <div class="uk-width-1-2@m">
-      {{products_form.errors}}
       </div>
-      </div>
+      {% if products_form.errors %}
+      <div class="uk-width-1-1 fHarmattan"><p>
+      خطایی رخ داد.
+      لطفا فیلد هارا دوباره با دقت پر کنید.<br>
+      در صورت تداوم خطا مشکل را به پشتیبانان سایت اطلاع دهید.<br>
 
+      {{products_form.errors}}</p>
+    </div>
+      {% endif %}
       <button style="margin-top:20px;" class="uk-button uk-button-primary fHarmattan redC " type="submit">تایید
     </button>
     </form>

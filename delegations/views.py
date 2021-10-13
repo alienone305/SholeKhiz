@@ -24,7 +24,7 @@ def AddDelegationView(request):
         if delegation_form.is_valid():
              delegation = delegation_form.save(commit=False)
              delegation.save()
-             return HttpResponseRedirect(reverse('home'))
+             return HttpResponseRedirect(reverse('accounts:superuserdashboard'))
         else:
             print(delegation.errors)
     else:

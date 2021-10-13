@@ -69,6 +69,8 @@ def CreateApplicationView(request,pk):
         if application_form.is_valid():
              application = application_form.save(commit=False)
              application.job = job
+             if 'resome' in request.FILES:
+                application.resome = request.FILES['resome']
              application.save()
              return HttpResponseRedirect(reverse('cooperation:jobopportunitylist'))
         else:
