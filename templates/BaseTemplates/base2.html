@@ -1,12 +1,12 @@
 {% load static %}
 <!DOCTYPE html>
-<html dir="rtl" class="redC">
+<html dir="rtl" class="redC" style="overflow-x: hidden;">
   <head>
     {% block head_block %}
     {% endblock %}
     {% load static %}
     <!DOCTYPE html>
-    <html lang="en" dir="ltr">
+    <html lang="en" dir="ltr" style="overflow-x: hidden;">
       <head>
         <meta charset="utf-8">
         <title></title>
@@ -21,7 +21,7 @@
         <script src="{% static 'js/uikit.min.js' %}" ></script>
         <script src="{% static 'js/uikit-icons.min.js' %}" ></script>
       </head>
-      <body style="background-color: #f2f2f2;" class="redC">
+      <body style="background-color: #f2f2f2;overflow-x:hidden;" class="redC">
         <header>
             <!-- Main Navbar -->
             <nav class="uk-navbar-container uk-margin" style="position: fixed;right: 0;left: 0;top: 0;z-index: 1030;box-shadow: 0 15px 17px rgba(0, 0,0, 0.18);" uk-navbar>
