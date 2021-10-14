@@ -40,7 +40,7 @@ def CreateProductView(request):
              if 'cataloge' in request.FILES:
                 product.cataloge = request.FILES['cataloge']
              product.save()
-             return HttpResponseRedirect(reverse('account:superuserdashboard'))
+             return HttpResponseRedirect(reverse('accounts:superuserdashboard'))
         else:
             print(products_form.errors)
     else:
