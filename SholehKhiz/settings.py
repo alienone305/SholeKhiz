@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'products',
     'order',
     'gallery',
+    'dbbackup',
     'delegations',
     'company',
     'cooperation',
@@ -162,3 +163,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 NIAZPARDAZ_USERNAME = 'radiator'
 NIAZPARDAZ_PASSWORD = '63555'
 NIAZPARDAZ_LINENUMBER = '5000209651'
+
+#Backup
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': '/home/server_user/backup/'}
