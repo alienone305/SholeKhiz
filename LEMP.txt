@@ -252,33 +252,7 @@ sudo certbot --nginx
 sudo certbot certonly --nginx
 sudo certbot renew --dry-run
 
--/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ Site reload stop start
-TO RELOAD THE SIDE IF ANY CHANGES HAVE BEEN MADE:
-sudo supervisorctl restart SholehKhiz
-sudo service nginx restart
 
-AND TO STOP IT:
-sudo supervisorctl stop SholehKhiz
-sudo service nginx stop
-
-AND TO START IT AGAIN:
-sudo supervisorctl start SholehKhiz
-sudo service nginx start
-
--/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ Updating
-python manage.py mediabackup
-python manage.py dbbackup
-
-sudo rm -r SholehKhiz
-cd && git clone https://github.com/alienone305/SholeKhiz.git SholehKhiz
-
-cd SholehKhiz/ && sudo rm -r SholehKhiz/settings.py && sudo mv SholehKhiz/settings0.py SholehKhiz/settings.py
-
-python manage.py mediarestore
-python manage.py dbrestore
-
-sudo supervisorctl restart SholehKhiz
-sudo service nginx restart
 #######################################
 
 cd && sudo apt update
@@ -313,3 +287,32 @@ sudo mv wordpress /var/www/sholehkhiz.com
 sudo chmod -R 755 /var/www/sholehkhiz.com && sudo chown www-data:www-data /var/www/sholehkhiz.com/ -R
 
 sudo service nginx start && sudo service nginx restart && sudo service php7.3-fpm restart
+
+
+-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ Site reload stop start
+TO RELOAD THE SIDE IF ANY CHANGES HAVE BEEN MADE:
+sudo supervisorctl restart SholehKhiz
+sudo service nginx restart
+
+AND TO STOP IT:
+sudo supervisorctl stop SholehKhiz
+sudo service nginx stop
+
+AND TO START IT AGAIN:
+sudo supervisorctl start SholehKhiz
+sudo service nginx start
+
+-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ Updating
+python manage.py mediabackup
+python manage.py dbbackup
+
+sudo rm -r SholehKhiz
+cd && git clone https://github.com/alienone305/SholeKhiz.git SholehKhiz
+
+cd SholehKhiz/ && sudo rm -r SholehKhiz/settings.py && sudo mv SholehKhiz/settings0.py SholehKhiz/settings.py
+
+python manage.py mediarestore
+python manage.py dbrestore
+
+sudo supervisorctl restart SholehKhiz
+sudo service nginx restart
